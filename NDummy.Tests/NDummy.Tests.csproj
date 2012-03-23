@@ -49,7 +49,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Factories\RandomFactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomBooleanFactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomByteFactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomDecimalFactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomDoubleFactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomFactoryTestBase.cs" />
+    <Compile Include="Factories\RandomFactories\RandomInt32FactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomInt16FactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomInt64FactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomSByteFactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomSingleFactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomUInt16FactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomUInt32FactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomUInt64FactoryTest.cs" />
     <Compile Include="Factories\SequenceFactoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

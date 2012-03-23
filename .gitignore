@@ -1,4 +1,5 @@
 bin/
 obj/
+_Resharper.NDummy/
 *.user
 *.suo

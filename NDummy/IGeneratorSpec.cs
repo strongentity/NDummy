@@ -1,5 +1,4 @@
 ﻿
-
 namespace NDummy
 {
     using System;
@@ -7,8 +6,7 @@ namespace NDummy
     using System.Linq;
     using System.Text;
 
-    public interface IFactory<T>
+    interface IGeneratorSpec<T>
     {
-        T Generate();
     }
 }

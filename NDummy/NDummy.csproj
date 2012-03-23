@@ -45,6 +45,7 @@
     <Compile Include="Factories\SequenceFactory.cs" />
     <Compile Include="IFactory.cs" />
     <Compile Include="IGenerator.cs" />
+    <Compile Include="IGeneratorSpec.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
