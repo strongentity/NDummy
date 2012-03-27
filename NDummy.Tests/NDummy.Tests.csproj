@@ -62,7 +62,8 @@
     <Compile Include="Factories\RandomFactories\RandomUInt16FactoryTest.cs" />
     <Compile Include="Factories\RandomFactories\RandomUInt32FactoryTest.cs" />
     <Compile Include="Factories\RandomFactories\RandomUInt64FactoryTest.cs" />
-    <Compile Include="Factories\SequenceFactoryTest.cs" />
+    <Compile Include="Factories\SequenceFactories\Int32SequenceFactoryTest.cs" />
+    <Compile Include="Factories\SequenceFactories\SequenceFactoryTestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +75,7 @@
       <Name>NDummy</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
