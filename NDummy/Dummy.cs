@@ -7,6 +7,11 @@
 
     public static class Dummy
     {
+        public static IGenerator<T> For<T>()
+        {
+            return null;
+        }
 
+        public static IGeneratorSettings Settings { get; set; }
     }
 }

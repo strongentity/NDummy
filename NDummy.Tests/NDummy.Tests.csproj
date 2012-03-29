@@ -49,6 +49,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\GuidFactoryTest.cs" />
     <Compile Include="Factories\RandomFactories\RandomBooleanFactoryTest.cs" />
     <Compile Include="Factories\RandomFactories\RandomByteFactoryTest.cs" />
     <Compile Include="Factories\RandomFactories\RandomDecimalFactoryTest.cs" />
