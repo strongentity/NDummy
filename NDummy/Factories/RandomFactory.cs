@@ -11,14 +11,14 @@
     /// <typeparam name="T">Type of objects to generate</typeparam>
     public abstract class RandomFactory<T> :IFactory<T> where T : struct, IComparable
     {
-        protected Random _random;
+        protected Random Random;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RandomFactory&lt;T&gt;"/> class.
         /// </summary>
         protected RandomFactory()
         {
-            _random = new Random();
+            this.Random = new Random();
         }
 
         /// <summary>
@@ -32,7 +32,7 @@
                 MinValue = settings.MinValue;
                 MaxValue = settings.MaxValue;
             }
-            _random = new Random();
+            this.Random = new Random();
         }
 
         /// <summary>
@@ -110,7 +110,7 @@
         /// <returns>Integer value</returns>
         public override int Generate()
         {
-            return _random.Next(MinValue, MaxValue);
+            return this.Random.Next(MinValue, MaxValue);
         }
 
     }
@@ -144,8 +144,11 @@
         /// <returns>Int64 value</returns>
         public override long Generate()
         {
-            var dblValue = _random.NextDouble();
-            return (long) (dblValue*MaxValue - dblValue*MinValue) + MinValue;
+            //TODO: check this
+            var dblValue = this.Random.NextDouble();
+            long range = MaxValue - MinValue;
+            if (range > long.MaxValue) range = long.MaxValue;
+            return (long) (dblValue*range) + MinValue;
         }
     }
 
@@ -179,7 +182,7 @@
         /// <returns>Int16 value</returns>
         public override short Generate()
         {
-            return (short) _random.Next(MinValue, MaxValue);
+            return (short) this.Random.Next(MinValue, MaxValue);
         }
     }
 
@@ -211,7 +214,7 @@
         /// <returns>Byte value</returns>
         public override byte Generate()
         {
-            return (byte)_random.Next(MinValue, MaxValue);
+            return (byte)this.Random.Next(MinValue, MaxValue);
         }
     }
 
@@ -245,7 +248,7 @@
         /// <returns>SByte value</returns>
         public override sbyte Generate()
         {
-            return (sbyte) _random.Next(MinValue, MaxValue);
+            return (sbyte) this.Random.Next(MinValue, MaxValue);
         }
     }
 
@@ -262,7 +265,7 @@
 
         public override ushort Generate()
         {
-            return (ushort) _random.Next(MinValue, MaxValue);
+            return (ushort) this.Random.Next(MinValue, MaxValue);
         }
     }
 
@@ -285,7 +288,7 @@
         public override uint Generate()
         {
             var range = MaxValue - MinValue;
-            return (uint)(_random.NextDouble() * range) + MinValue;
+            return (uint)(this.Random.NextDouble() * range) + MinValue;
         }
     }
 
@@ -304,7 +307,7 @@
 
         public override ulong Generate()
         {
-            var dblValue = _random.NextDouble();
+            var dblValue = this.Random.NextDouble();
             return (ulong)(dblValue * MaxValue - dblValue * MinValue) + MinValue;
         }
     }
@@ -326,11 +329,11 @@
 
         public override float Generate()
         {
-            var dblValue = _random.NextDouble();
+            var dblValue = this.Random.NextDouble();
             float range = MaxValue - MinValue;
             if (range > float.MaxValue)
                 range = float.MaxValue;
-            return (float)(dblValue * (MaxValue  - MinValue)) + MinValue;
+            return (float)(dblValue * range) + MinValue;
         }
     }
 
@@ -351,7 +354,7 @@
 
         public override double Generate()
         {
-            var dblValue = _random.NextDouble();
+            var dblValue = this.Random.NextDouble();
             var range = MaxValue - MinValue;
             if (range > double.MaxValue)
                 range = double.MaxValue;
@@ -386,7 +389,7 @@
                 range = MaxValue;
             }
             
-            var dblValue = (decimal)_random.NextDouble();
+            var dblValue = (decimal)this.Random.NextDouble();
             return (dblValue * range) + MinValue;
         }
     }
@@ -395,7 +398,7 @@
     {
         public override bool Generate()
         {
-            double nextDouble = _random.NextDouble();
+            double nextDouble = this.Random.NextDouble();
             int value = (int)Math.Round(nextDouble);
             return value == 1;
         }
