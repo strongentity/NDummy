@@ -109,8 +109,7 @@ namespace NDummy.Tests.Factories.SequenceFactories
 
             
            
-             //  (val1.CompareTo(value1) == 0 && val2.CompareTo(value2) == 0 &&
-               // val3.CompareTo(value3) == 0);
+             Assert.True(val1.CompareTo(value1) == 0 && val2.CompareTo(value2) == 0 && val3.CompareTo(value3) == 0);
 
 
         }
