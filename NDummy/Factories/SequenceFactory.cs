@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace NDummy.Factories
+﻿namespace NDummy.Factories
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
     /*
      * 
      * int, short, byte, bool, long, uint, ushort, sbyte, ulong, float, double, decimal, BigInteger
@@ -99,22 +99,22 @@ namespace NDummy.Factories
             }
             if ( settings.Step>0 && settings.MaxValue < settings.MinValue )
             {
-                throw new System.ArgumentException("On Step positive(+) Max can not less than Min", "settings");
+                throw new System.ArgumentException("If step is positive then max should be greater than min", "settings");
             }
             if (settings.Step < 0 && settings.MaxValue > settings.MinValue)
             {
-                throw new System.ArgumentException("On Step negative(+) Max value can not bigger than Min value", "settings");
+                throw new System.ArgumentException("If step is negative then min should be greater than max", "settings");
             }
         }
 
         public override int Generate()
         {
             int _currentValue = MinValue;
-            if(IsFirstValue==true)
+            if(IsFirstValue)
             {
                 IsFirstValue = false;
             }
-            else if(IsFirstValue==false)
+            else
             {
             
                 if(_currentValue != CurrentValue);
@@ -161,6 +161,95 @@ namespace NDummy.Factories
 
     }
 
+    public class DoubleSequenceFactory : SequenceFactory<double>
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+         public DoubleSequenceFactory() : 
+           base( new SequenceFactorySettings<double>()
+            {
+                MaxValue = double.MaxValue,
+                MinValue = double.MinValue,
+                Step = 1
+            })
+         {
+
+         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="settings"></param>
+         public DoubleSequenceFactory(SequenceFactorySettings<double> settings):base(settings)
+        {
+            if (settings.Step == 0)
+            {
+                throw new System.ArgumentException("Step can not be zero","settings");
+            }
+            if ( settings.Step>0 && settings.MaxValue < settings.MinValue )
+            {
+                throw new System.ArgumentException("If step is positive then max should be greater than min", "settings");
+            }
+            if (settings.Step < 0 && settings.MaxValue > settings.MinValue)
+            {
+                throw new System.ArgumentException("If step is negative then min should be greater than max", "settings");
+            }
+        }
+
+         public override double  Generate()
+         {
+             double _currentValue = MinValue;
+             if (IsFirstValue)
+             {
+                 IsFirstValue = false;
+             }
+             else
+             {
+
+                 if (_currentValue != CurrentValue) ;
+                 _currentValue = CurrentValue;
+                 double newValue = 0;
+
+                 if (Step > 0)
+                 {
+                     try
+                     {
+                         checked
+                         {
+                             newValue = _currentValue + Step;
+                             if (newValue > MaxValue)
+                                 newValue = MinValue;
+                         }
+                     }
+                     catch
+                     {
+                         newValue = _currentValue + Step;
+                     }
+                 }
+                 else if (Step < 0)
+                 {
+                     try
+                     {
+                         checked
+                         {
+                             newValue = _currentValue + Step;
+                             if (newValue < MaxValue)
+                                 newValue = MinValue;
+                         }
+                     }
+                     catch
+                     {
+                         newValue = MaxValue + Step;
+                     }
+                 }
+                 _currentValue = newValue;
+                 CurrentValue = _currentValue;
+             }
+             return _currentValue;
+         }
+    
+    }
 
 
 }
