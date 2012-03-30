@@ -63,8 +63,11 @@
     <Compile Include="Factories\RandomFactories\RandomUInt16FactoryTest.cs" />
     <Compile Include="Factories\RandomFactories\RandomUInt32FactoryTest.cs" />
     <Compile Include="Factories\RandomFactories\RandomUInt64FactoryTest.cs" />
+    <Compile Include="Factories\SequenceFactories\ByteSequenceFactoryTest.cs" />
     <Compile Include="Factories\SequenceFactories\DoubleSequenceFactoryTest.cs" />
+    <Compile Include="Factories\SequenceFactories\Int16SequenceFactoryTest.cs" />
     <Compile Include="Factories\SequenceFactories\Int32SequenceFactoryTest.cs" />
+    <Compile Include="Factories\SequenceFactories\Int64SequenceFactoryTest.cs" />
     <Compile Include="Factories\SequenceFactories\SequenceFactoryTestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\CommonExtensions.cs" />
