@@ -146,7 +146,18 @@
         {
             //TODO: check this
             var dblValue = this.Random.NextDouble();
-            long range = MaxValue - MinValue;
+            long range =0;
+            try
+            {
+                checked
+                {
+                    range = MaxValue - MinValue;
+                }
+            }
+            catch
+            {
+                range = long.MaxValue;
+            }
             if (range > long.MaxValue) range = long.MaxValue;
             return (long) (dblValue*range) + MinValue;
         }

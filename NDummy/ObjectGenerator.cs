@@ -17,9 +17,9 @@
             return this;
         }
 
-        public IGenerator<T> Configure(params IGeneratorSpec<T>[] specs)
+        public IGenerator<T> Configure(params IGeneratorSpec[] specs)
         {
-
+            
             return this;
         }
 
