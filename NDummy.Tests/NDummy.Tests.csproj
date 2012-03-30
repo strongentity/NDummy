@@ -70,6 +70,11 @@
     <Compile Include="Factories\SequenceFactories\Int64SequenceFactoryTest.cs" />
     <Compile Include="Factories\SequenceFactories\SequenceFactoryTestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Specs\CustomActionSpecTest.cs" />
+    <Compile Include="Specs\MaxDepthSpecTest.cs" />
+    <Compile Include="Specs\MemberFactorySpecTest.cs" />
+    <Compile Include="Specs\SpecTest.cs" />
+    <Compile Include="Specs\TypeFactorySpecTest.cs" />
     <Compile Include="Utilities\CommonExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

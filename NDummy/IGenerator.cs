@@ -23,7 +23,7 @@
         /// </summary>
         /// <param name="specs">The specs.</param>
         /// <returns>The current generator instance</returns>
-        IGenerator<T> Configure(params IGeneratorSpec<T>[] specs);
+        IGenerator<T> Configure(params IGeneratorSpec[] specs);
 
         /// <summary>
         /// Generates the collection of T.
