@@ -40,12 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefaultGeneratorSettings.cs" />
     <Compile Include="Dummy.cs" />
     <Compile Include="Factories\FuncAdapter.cs" />
     <Compile Include="Factories\GuidFactory.cs" />
     <Compile Include="Factories\RandomFactory.cs" />
     <Compile Include="Factories\SequenceFactory.cs" />
     <Compile Include="GeneratorPredicate.cs" />
+    <Compile Include="GeneratorSettings.cs" />
     <Compile Include="IFactory.cs" />
     <Compile Include="IGenerator.cs" />
     <Compile Include="IGeneratorPredicate.cs" />
