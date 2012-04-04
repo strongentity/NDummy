@@ -29,7 +29,7 @@
             return new MaxDepthSpec(maxDepth);
         }
 
-        public static IGeneratorSpec Act<TClass>(Action<int, TClass> action)
+        public static IGeneratorSpec Act<TClass>(Action<int, TClass> action) where TClass:class
         {
             return new CustomActionSpec<TClass>(action);
         }

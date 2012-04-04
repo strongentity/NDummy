@@ -9,7 +9,7 @@
     {
         static Dummy()
         {
-            Settings = new DefaultGeneratorSettings();
+            Settings = new DefaultSettings();
         }
 
         public static IGenerator<T> For<T>()
@@ -17,6 +17,6 @@
             return null;
         }
 
-        public static IGeneratorSettings Settings { get; private set; }
+        public static ISettings Settings { get; private set; }
     }
 }

@@ -5,9 +5,9 @@
     using System.Linq;
     using System.Text;
 
-    public class DefaultGeneratorSettings : GeneratorSettings
+    public class DefaultSettings : Settings
     {
-        public DefaultGeneratorSettings()
+        public DefaultSettings()
         {
             
         }

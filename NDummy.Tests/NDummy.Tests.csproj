@@ -73,6 +73,9 @@
     <Compile Include="Factories\SequenceFactories\DoubleSequenceFactoryTest.cs" />
     <Compile Include="Factories\SequenceFactories\Int32SequenceFactoryTest.cs" />
     <Compile Include="Factories\SequenceFactories\SequenceFactoryTestBase.cs" />
+    <Compile Include="Generators\CustomAbstractClassGeneratorTest.cs" />
+    <Compile Include="Generators\CustomAbstractClassImplGeneratorTest.cs" />
+    <Compile Include="Generators\CustomClassGeneratorTest.cs" />
     <Compile Include="Generators\ObjectGeneratorTestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Specs\CustomActionSpecTest.cs" />

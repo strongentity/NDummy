@@ -10,16 +10,11 @@
     public abstract class ObjectGeneratorTestBase<T>
     {
         protected IGenerator<T> Generator;
-            
+
+        protected abstract Func<ConstructorArguments, T> GetConstructor();        
+
         [Fact]
-        public void ConfigureShouldPassSpec()
-        {
-            Assert.Throws<ArgumentNullException>(() => Generator.Configure(null));
-        }
-
-        protected abstract Func<ConstructorArguments, T> GetConstructor();
-
-        protected void EnsureConstructorMethodIsCalled()
+        public void EnsureConstructorMethodIsCalled()
         {
             bool isCalled = false;
             Func<ConstructorArguments, T> func = (args)=>
