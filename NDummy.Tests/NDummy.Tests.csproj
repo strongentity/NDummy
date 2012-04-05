@@ -64,7 +64,9 @@
     <Compile Include="Factories\RandomFactories\RandomUInt32FactoryTest.cs" />
     <Compile Include="Factories\RandomFactories\RandomUInt64FactoryTest.cs" />
     <Compile Include="Factories\SequenceFactories\ByteSequenceFactoryTest.cs" />
+    <Compile Include="Factories\SequenceFactories\DecimalSequenceFactoryTest.cs" />
     <Compile Include="Factories\SequenceFactories\DoubleSequenceFactoryTest.cs" />
+    <Compile Include="Factories\SequenceFactories\FloatSequenceFactoryTest.cs" />
     <Compile Include="Factories\SequenceFactories\Int16SequenceFactoryTest.cs" />
     <Compile Include="Factories\SequenceFactories\Int32SequenceFactoryTest.cs" />
     <Compile Include="Factories\SequenceFactories\Int64SequenceFactoryTest.cs" />

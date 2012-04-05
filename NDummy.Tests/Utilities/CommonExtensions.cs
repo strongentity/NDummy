@@ -12,7 +12,7 @@ namespace NDummy.Tests.Utilities
         {
             var _value =Convert.ToDouble(value);
             var _valueToCompare = Convert.ToDouble(valueToCompare);
-            return Math.Abs(_value - _valueToCompare) <= 0.000001;
+            return (Math.Abs(_value - _valueToCompare) <= 0.000001 );
         }
     }
 }
