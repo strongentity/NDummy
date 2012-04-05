@@ -20,7 +20,7 @@
             var spec = new CustomActionSpec<object>(action);
             var mock = new Mock<IGeneratorSettings>();
             spec.Apply(mock.Object);
-            mock.Verify(s => s.SetCustomAction(action), Times.Once());
+            mock.Verify(s => s.AddCustomAction(action), Times.Once());
         }
     }
 }

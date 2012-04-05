@@ -41,12 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefaultSettings.cs" />
     <Compile Include="Dummy.cs" />
     <Compile Include="Factories\FuncAdapter.cs" />
     <Compile Include="Factories\GuidFactory.cs" />
     <Compile Include="Factories\RandomFactory.cs" />
     <Compile Include="Factories\SequenceFactory.cs" />
     <Compile Include="GeneratorPredicate.cs" />
+    <Compile Include="GeneratorSettings.cs" />
     <Compile Include="IFactory.cs" />
     <Compile Include="IGenerator.cs" />
     <Compile Include="IGeneratorPredicate.cs" />
@@ -60,6 +62,7 @@
     <Compile Include="Specs\MaxDepthSpec.cs" />
     <Compile Include="Specs\MemberFactorySpec.cs" />
     <Compile Include="Specs\TypeFactorySpec.cs" />
+    <Compile Include="Utilities\TypeUtilities.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

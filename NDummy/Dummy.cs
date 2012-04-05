@@ -7,11 +7,16 @@
 
     public static class Dummy
     {
+        static Dummy()
+        {
+            Settings = new DefaultSettings();
+        }
+
         public static IGenerator<T> For<T>()
         {
             return null;
         }
 
-        public static IGeneratorSettings Settings { get; set; }
+        public static ISettings Settings { get; private set; }
     }
 }

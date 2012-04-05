@@ -65,6 +65,8 @@
         /// Sets the custom action.
         /// </summary>
         /// <param name="customAction">The custom action.</param>
-        void SetCustomAction(object customAction);
+        void AddCustomAction(object customAction);
+
+        IList<object> CustomActions { get; } 
     }
 }
