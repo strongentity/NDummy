@@ -117,7 +117,8 @@ namespace NDummy.Factories
             {
             
                 if(_currentValue != CurrentValue)
-                _currentValue = CurrentValue;
+                    _currentValue = CurrentValue;
+                
                 int newValue = 0;
            
                 if (Step > 0)
@@ -129,13 +130,19 @@ namespace NDummy.Factories
                             newValue = _currentValue + Step;
                             if (newValue > MaxValue)
                             {
-                                newValue = (MinValue - 1) + ((Step) - (MaxValue - _currentValue));
+                                var diff = newValue - MaxValue - 1;
+                                newValue = MinValue + diff;
+
+                                //newValue = (MinValue - 1) + ((Step) - (MaxValue - _currentValue));
                             }
                         }
                     }
                     catch
                     {
-                        newValue = _currentValue + Step ;
+                        var rangeBetweenCyclic = MaxValue - _currentValue + 1;
+                        newValue = MinValue + Step - rangeBetweenCyclic;
+
+                        //newValue = _currentValue + Step ;
                     }
                 }
                 else if (Step < 0)
