@@ -51,6 +51,5 @@
         {
             return baseTypes.Contains(type);
         }
-
     }
 }

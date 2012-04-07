@@ -39,9 +39,12 @@
             type = typeof(T);
             memberGenerators = new Dictionary<MemberInfo, object>();
             generalSettings = param.GeneralSettings;
+            generatorSettings.MaxDepth = generalSettings.MaxDepth;
             currentDepth = param.CurrentDepth;
             isBaseType = type.IsBaseType();
-            baseFactory = generatorSettings.Factories[type] as IFactory<T>;
+   
+            if(isBaseType)
+                baseFactory = generatorSettings.Factories[type] as IFactory<T>;
         } 
 
         public IGenerator<T> ConstructWith(Func<ConstructorArguments, T> func)
@@ -71,6 +74,16 @@
             }
 
             T instance = (isBaseType) ? this.CreateBaseTypes() : this.CreateComplexType();
+            if(type.IsClass)
+            {
+                if(generatorSettings.CustomActions != null && generatorSettings.CustomActions.Count > 0)
+                {
+                    for(int i=0; i< generatorSettings.CustomActions.Count; i++)
+                    {
+                        (generatorSettings.CustomActions[i] as Action<T>)(instance);
+                    }
+                }
+            }
             index++;
             return instance;
         }
@@ -103,14 +116,14 @@
                 {
                     var propInfo = generatorPair.Key as PropertyInfo;
                     value = generatorPair.Value.GetType().InvokeMember(
-                        "Generate", BindingFlags.Public | BindingFlags.InvokeMethod, null, generatorPair.Value, null);
+                        "Generate", BindingFlags.Public | BindingFlags.Instance | BindingFlags.InvokeMethod, null, generatorPair.Value, null);
                     propInfo.SetValue(instance, value, null);
                 }
                 else
                 {
                     var fieldInfo = generatorPair.Key as FieldInfo;
                     value = generatorPair.Value.GetType().InvokeMember(
-                        "Generate", BindingFlags.Public | BindingFlags.InvokeMethod, null, generatorPair.Value, null);
+                        "Generate", BindingFlags.Public | BindingFlags.Instance | BindingFlags.InvokeMethod, null, generatorPair.Value, null);
                     fieldInfo.SetValue(instance, value);
                 }
             }
@@ -119,14 +132,17 @@
 
         public ICollection<T> GenerateCollection(int numberOfItems)
         {
-            throw new NotImplementedException();
+            IList<T> result = new List<T>();
+            for(int i=0; i<numberOfItems; i++)
+                result.Add(this.Generate());
+            return result;
         }
 
         private void ConstructMemberGenerators()
         {
-            foreach(var memberInfo in type.GetMembers(BindingFlags.Public))
+            foreach(var memberInfo in type.GetMembers(BindingFlags.Public | BindingFlags.Instance))
             {
-                if (memberInfo.MemberType != MemberTypes.Field || memberInfo.MemberType != MemberTypes.Property) continue;
+                if (memberInfo.MemberType != MemberTypes.Field && memberInfo.MemberType != MemberTypes.Property) continue;
                 Type memberType = memberInfo.MemberType == MemberTypes.Property
                                       ? (memberInfo as PropertyInfo).PropertyType
                                       : (memberInfo as FieldInfo).FieldType;
@@ -145,9 +161,10 @@
                 }
                 else
                 {
+                    if (generatorSettings.MaxDepth <= currentDepth) continue;
                     var childParams = new ObjectGeneratorParams{ CurrentDepth = currentDepth + 1, GeneralSettings = generalSettings };
                     var genericType = typeof(ObjectGenerator<>).MakeGenericType(memberType);
-                    var newGenerator = Activator.CreateInstance(genericType, BindingFlags.Public, null, childParams);
+                    var newGenerator = Activator.CreateInstance(genericType,childParams);
                     memberGenerators.Add(memberInfo, newGenerator);
                 }
             }

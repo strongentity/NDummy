@@ -9,22 +9,21 @@
 
     using NDummy.Tests.CustomTypes;
 
-    public class CustomClassGeneratorTest : ObjectGeneratorTestBase<CustomClass>
+    public class CustomDerivedClassGeneratorTest : ObjectGeneratorTestBase<CustomDerivedClass>
     {
         private Mock<ISettings> generalSettingsMock;
-
-        public CustomClassGeneratorTest()
+        
+        public CustomDerivedClassGeneratorTest()
         {
             generalSettingsMock = new Mock<ISettings>();
             var param = new ObjectGeneratorParams { CurrentDepth = 1, GeneralSettings = generalSettingsMock.Object };
-            Generator = new ObjectGenerator<CustomClass>(param);
+            Generator = new ObjectGenerator<CustomDerivedClass>(param);
         }
 
-        protected override Func<ConstructorArguments, CustomClass> GetConstructor()
+        protected override Func<ConstructorArguments, CustomDerivedClass> GetConstructor()
         {
-            return args => new CustomClass();
+            return args => new CustomDerivedClass();
         }
-
 
     }
 }
