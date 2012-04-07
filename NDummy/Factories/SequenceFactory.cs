@@ -109,6 +109,7 @@ namespace NDummy.Factories
         public override int Generate()
         {
             int _currentValue = MinValue;
+            int newValue = 0;
             if(IsFirstValue)
             {
                 IsFirstValue = false;
@@ -118,8 +119,7 @@ namespace NDummy.Factories
             
                 if(_currentValue != CurrentValue)
                 _currentValue = CurrentValue;
-                int newValue = 0;
-           
+
                 if (Step > 0)
                 {
                     try
@@ -127,7 +127,7 @@ namespace NDummy.Factories
                         checked
                         {
                             newValue = _currentValue + Step;
-                            if (newValue > MaxValue)
+                            if (((MaxValue - _currentValue) - Step) < 0)
                             {
                                 newValue = (MinValue - 1) + ((Step) - (MaxValue - _currentValue));
                             }
