@@ -13,7 +13,7 @@
 
         public void Apply(IGeneratorSettings settings)
         {
-            settings.AddCustomAction(settings);
+            settings.AddCustomAction(action);
         }
     }
 }

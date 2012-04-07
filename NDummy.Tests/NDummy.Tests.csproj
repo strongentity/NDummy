@@ -53,7 +53,6 @@
     <Compile Include="CustomTypes\CustomClass.cs" />
     <Compile Include="CustomTypes\CustomDerivedClass.cs" />
     <Compile Include="CustomTypes\CustomEnum.cs" />
-    <Compile Include="CustomTypes\CustomStaticClass.cs" />
     <Compile Include="CustomTypes\CustomStruct.cs" />
     <Compile Include="CustomTypes\ICustomInterface.cs" />
     <Compile Include="Factories\GuidFactoryTest.cs" />
@@ -76,6 +75,7 @@
     <Compile Include="Generators\CustomAbstractClassGeneratorTest.cs" />
     <Compile Include="Generators\CustomAbstractClassImplGeneratorTest.cs" />
     <Compile Include="Generators\CustomClassGeneratorTest.cs" />
+    <Compile Include="Generators\CustomDerivedClassGeneratorTest.cs" />
     <Compile Include="Generators\ObjectGeneratorTestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Specs\CustomActionSpecTest.cs" />

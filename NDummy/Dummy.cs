@@ -14,7 +14,11 @@
 
         public static IGenerator<T> For<T>()
         {
-            return null;
+            return new ObjectGenerator<T>(new ObjectGeneratorParams
+                {
+                    CurrentDepth = 1,
+                    GeneralSettings = Settings
+                });
         }
 
         public static ISettings Settings { get; private set; }
