@@ -6,7 +6,7 @@ namespace NDummy.Factories
 
     /*
      * 
-     * int+, short+, byte+, bool, long+, uint++, ushort++, sbyte, ulong++, float+, double+, decimal+, BigInteger
+     * int+, short+, byte+, bool, long+, uint++, ushort++, sbyte+, ulong++, float+, double+, decimal+, BigInteger+
      */
     public abstract class SequenceFactory<T> : IFactory<T> where T:struct, IComparable
     {
@@ -128,7 +128,9 @@ namespace NDummy.Factories
                         {
                             newValue = _currentValue + Step;
                             if (newValue > MaxValue)
-                                newValue = MinValue ;
+                            {
+                                newValue = (MinValue - 1) + ((Step) - (MaxValue - _currentValue));
+                            }
                         }
                     }
                     catch
@@ -716,8 +718,8 @@ namespace NDummy.Factories
         public UInt32SequenceFactory() :
             base(new SequenceFactorySettings<uint>()
             {
-                MaxValue = UInt32.MaxValue,
-                MinValue = UInt32.MinValue,
+                MaxValue = uint.MaxValue,
+                MinValue = uint.MinValue,
                 Step = 1
             })
         {
@@ -757,7 +759,7 @@ namespace NDummy.Factories
 
                 if (_currentValue != CurrentValue)
                     _currentValue = CurrentValue;
-                uint newValue = 0;
+                long newValue = 0;
 
                 if (Step > 0)
                 {
@@ -765,14 +767,14 @@ namespace NDummy.Factories
                     {
                         checked
                         {
-                            newValue = _currentValue + Step;
+                            newValue = (long) (_currentValue) + Step;
                             if (newValue > MaxValue)
-                                newValue = MinValue;
+                                newValue = (long) MinValue;
                         }
                     }
                     catch
                     {
-                        newValue = _currentValue + Step;
+                        newValue = (long) (_currentValue + Step);
                     }
                 }
                 else if (Step < 0)
@@ -781,17 +783,17 @@ namespace NDummy.Factories
                     {
                         checked
                         {
-                            newValue = _currentValue + Step;
+                            newValue = (long) (_currentValue) + Step;
                             if (newValue < MaxValue)
-                                newValue = MinValue;
+                                newValue = (long) MinValue;
                         }
                     }
                     catch
                     {
-                        newValue = MaxValue + Step;
+                        newValue = (long) (MaxValue + Step);
                     }
                 }
-                _currentValue = newValue;
+                _currentValue = (uint)newValue;
                 CurrentValue = _currentValue;
             }
             return _currentValue;

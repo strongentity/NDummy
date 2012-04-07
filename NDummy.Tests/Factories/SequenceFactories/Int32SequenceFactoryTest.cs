@@ -19,8 +19,9 @@ namespace NDummy.Tests.Factories.SequenceFactories
             IsSequence(minValue, maxValue, step);
         }*/
         [Theory]
-        [InlineData(5,15,5,5,10,15)]
-        [InlineData(-10, 10, 2, -10, -8, -6)]
+        [InlineData(5,15,8,5,13,10)]
+        [InlineData(-1,int.MaxValue,int.MaxValue, -1,2147483646, 2147483644)]
+       // [InlineData(-10, 10, 2, -10, -8, -6)]
         public  void CheckGeneratedSequence(int minValue,int maxValue,int step,int val1,int val2,int val3)
         {
             IsValidSequence(minValue,maxValue,step,val1,val2,val3);
