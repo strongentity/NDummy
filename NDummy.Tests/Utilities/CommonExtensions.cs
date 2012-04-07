@@ -8,9 +8,11 @@ namespace NDummy.Tests.Utilities
 {
     public static class CommonExtensions
     {
-        public static bool AreEqual(this double value, double valueToCompare)
+        public static bool AreEqual<T>(this T value, T valueToCompare)
         {
-            return Math.Abs(value - valueToCompare) <= 0.000001;
+            var _value =Convert.ToDouble(value);
+            var _valueToCompare = Convert.ToDouble(valueToCompare);
+            return (Math.Abs(_value - _valueToCompare) <= 0.000001 );
         }
     }
 }

@@ -4,6 +4,7 @@ using Xunit;
 using NDummy.Tests.Utilities;
 
 
+
 namespace NDummy.Tests.Factories.SequenceFactories
 {
     public abstract class SequenceFactoryTestBase<T> where T :struct,IComparable
@@ -107,9 +108,39 @@ namespace NDummy.Tests.Factories.SequenceFactories
             Console.WriteLine(value3);
             Console.WriteLine(val3.CompareTo(value3));
 
-            
-           
-             Assert.True(val1.CompareTo(value1) == 0 && val2.CompareTo(value2) == 0 && val3.CompareTo(value3) == 0);
+            Assert.True(val1.CompareTo(value1) == 0 && val2.CompareTo(value2) == 0 && val3.CompareTo(value3) == 0);
+
+        }
+
+        protected void IsValidDoubleSequence(T minValue, T maxValue, T step, T val1, T val2, T val3)
+        {
+
+            var settings = new SequenceFactorySettings<T>
+            {
+                MinValue = minValue,
+                MaxValue = maxValue,
+                Step = step
+            };
+
+            _factory = GetFactory(settings);
+            T value1 = _factory.Generate();
+            Console.WriteLine(val1);
+            Console.WriteLine(value1);
+           // Console.WriteLine(val1.CompareTo(value1));
+            T value2 = _factory.Generate();
+            Console.WriteLine(val2);
+            Console.WriteLine(value2);
+           // Console.WriteLine(val2.CompareTo(value2));
+            T value3 = _factory.Generate();
+            Console.WriteLine(val3);
+            Console.WriteLine(value3);
+          // Console.WriteLine(val3.CompareTo(value3));
+
+           var check1=val1.AreEqual(value1);
+           var check2= val2.AreEqual(value2);
+           var check3= val3.AreEqual(value3);
+            Assert.True(check1&&check2&&check3);
+            //Assert.True(val1.CompareTo(value1) == 0 && val2.CompareTo(value2) == 0 && val3.CompareTo(value3) == 0);
 
 
         }
