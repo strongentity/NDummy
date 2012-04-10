@@ -12,7 +12,7 @@ namespace NDummy.Tests.Factories.SequenceFactories
 
         [Theory]
         [InlineData(byte.MinValue, byte.MaxValue, (byte)5, (byte)0, (byte)5, (byte)10)]
-       // [InlineData((byte)-10, (byte)10, (byte)20, (byte)-10, (byte)10, (byte)-10)]
+        [InlineData((byte)3, (byte)255, (byte)200, (byte)1, (byte)203, (byte)150)]
        // [InlineData((byte)10, (byte)-1000, (byte)-575, (byte)10, (byte)-565, (byte)10)]
         public void CheckGeneratedSequence(byte minValue, byte maxValue, byte step, byte val1, byte val2, byte val3)
         {

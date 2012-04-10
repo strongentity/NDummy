@@ -118,9 +118,7 @@ namespace NDummy.Factories
             
                 if(_currentValue != CurrentValue)
                     _currentValue = CurrentValue;
-                
                 int newValue = 0;
-           
                 if (Step > 0)
                 {
                     try
@@ -132,8 +130,6 @@ namespace NDummy.Factories
                             {
                                 var diff = newValue - MaxValue - 1;
                                 newValue = MinValue + diff;
-
-                                //newValue = (MinValue - 1) + ((Step) - (MaxValue - _currentValue));
                             }
                         }
                     }
@@ -141,8 +137,6 @@ namespace NDummy.Factories
                     {
                         var rangeBetweenCyclic = MaxValue - _currentValue + 1;
                         newValue = MinValue + Step - rangeBetweenCyclic;
-
-                        //newValue = _currentValue + Step ;
                     }
                 }
                 else if (Step < 0)
@@ -153,12 +147,16 @@ namespace NDummy.Factories
                         {
                             newValue = _currentValue + Step;
                             if (newValue < MaxValue)
-                                newValue = MinValue;
+                            {
+                               var diff = MaxValue - newValue - 1;
+                                newValue = MinValue-diff;
+                            }
                         }
                     }
                     catch
                     {
-                        newValue = MaxValue + Step;
+                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
+                        newValue = MinValue + Step - rangeBetweenCyclic;
                     }
                 }
                 _currentValue = newValue;
@@ -228,12 +226,16 @@ namespace NDummy.Factories
                         {
                             newValue = (short) (_currentValue + Step);
                             if (newValue > MaxValue)
-                                newValue = MinValue;
+                            {
+                                var diff = newValue - MaxValue - 1;
+                                newValue = (short) (MinValue + diff);
+                            }
                         }
                     }
                     catch
                     {
-                        newValue = (short) (_currentValue + Step);
+                        var rangeBetweenCyclic = MaxValue - _currentValue + 1;
+                        newValue = (short) (MinValue + Step - rangeBetweenCyclic);
                     }
                 }
                 else if (Step < 0)
@@ -244,12 +246,16 @@ namespace NDummy.Factories
                         {
                             newValue = (short) (_currentValue + Step);
                             if (newValue < MaxValue)
-                                newValue = MinValue;
+                            {
+                                var diff = MaxValue - newValue - 1;
+                                newValue = (short) (MinValue - diff);
+                            }
                         }
                     }
                     catch
                     {
-                        newValue = (short) (MaxValue + Step);
+                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
+                        newValue = (short) (MinValue + Step - rangeBetweenCyclic);
                     }
                 }
                 _currentValue = newValue;
@@ -319,12 +325,16 @@ namespace NDummy.Factories
                         {
                             newValue = _currentValue + Step;
                             if (newValue > MaxValue)
-                                newValue = MinValue;
+                            {
+                                var diff = newValue - MaxValue - 1;
+                                newValue = MinValue + diff;
+                            }
                         }
                     }
                     catch
                     {
-                        newValue = _currentValue + Step;
+                        var rangeBetweenCyclic = MaxValue - _currentValue + 1;
+                        newValue = MinValue + Step - rangeBetweenCyclic;
                     }
                 }
                 else if (Step < 0)
@@ -335,12 +345,16 @@ namespace NDummy.Factories
                         {
                             newValue = _currentValue + Step;
                             if (newValue < MaxValue)
-                                newValue = MinValue;
+                            {
+                                var diff = MaxValue - newValue - 1;
+                                newValue = MinValue - diff;
+                            }
                         }
                     }
                     catch
                     {
-                        newValue = MaxValue + Step;
+                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
+                        newValue = MinValue + Step - rangeBetweenCyclic;
                     }
                 }
                 _currentValue = newValue;
@@ -410,13 +424,19 @@ namespace NDummy.Factories
                         {
                             newValue = (byte) (_currentValue + Step);
                             if (newValue > MaxValue)
-                                newValue = MinValue;
+                            {
+                                var diff = newValue - MaxValue - 1;
+                                newValue = (byte) (MinValue + diff);
+                            }
                         }
                     }
                     catch
                     {
-                        newValue = (byte) (_currentValue + Step);
+                        var rangeBetweenCyclic = MaxValue - _currentValue + 1;
+                        newValue = (byte) (MinValue + Step - rangeBetweenCyclic);
                     }
+
+
                 }
                 else if (Step < 0)
                 {
@@ -426,12 +446,16 @@ namespace NDummy.Factories
                         {
                             newValue = (byte) (_currentValue + Step);
                             if (newValue < MaxValue)
-                                newValue = MinValue;
+                            {
+                                var diff = MaxValue - newValue - 1;
+                                newValue = (byte) (MinValue - diff);
+                            }
                         }
                     }
                     catch
                     {
-                        newValue = (byte) (MaxValue + Step);
+                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
+                        newValue = (byte) (MinValue + Step - rangeBetweenCyclic);
                     }
                 }
                 _currentValue = newValue;
