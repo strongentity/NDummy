@@ -22,7 +22,7 @@
             var mock = new Mock<IGeneratorSettings>();
             var spec = new MemberFactorySpec(memberInfo,factory);
             spec.Apply(mock.Object);
-            mock.Verify(s => s.SetFactory(memberInfo,factory), Times.Once());
+            mock.Verify(s => s.SetMemberFactory(memberInfo,factory), Times.Once());
         }
     }
 }

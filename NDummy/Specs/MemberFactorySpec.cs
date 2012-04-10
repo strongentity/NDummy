@@ -20,7 +20,7 @@
 
         public void Apply(IGeneratorSettings settings)
         {
-            settings.SetFactory(memberInfo, factory);
+            settings.SetMemberFactory(memberInfo, factory);
         }
     }
 }

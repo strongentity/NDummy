@@ -5,6 +5,8 @@
     using System.Linq;
     using System.Text;
 
+    using Moq;
+
     using Xunit;
 
     public abstract class ObjectGeneratorTestBase<T>
@@ -31,5 +33,13 @@
             Assert.Throws<InvalidOperationException>(() => Generator.Generate());
         }
 
+        [Fact]
+        public void SpecShouldBeApplied()
+        {
+            var specMock = new Mock<IGeneratorSpec>();
+            Generator.Configure(specMock.Object);
+            specMock.Verify(s=>s.Apply(It.IsAny<IGeneratorSettings>()), Times.Once());
+
+        }
     }
 }

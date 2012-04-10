@@ -79,7 +79,7 @@ namespace NDummy.Factories
            base( new SequenceFactorySettings<int>()
             {
                 MaxValue = Int32.MaxValue,
-                MinValue = Int32.MinValue,
+                MinValue = 1,
                 Step = 1
             })
          {

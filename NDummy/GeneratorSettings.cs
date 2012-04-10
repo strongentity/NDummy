@@ -18,7 +18,7 @@
             customActions = new List<object>(); 
         }
 
-        public void SetFactory(MemberInfo memberInfo, object factory)
+        public void SetMemberFactory(MemberInfo memberInfo, object factory)
         {
             if (memberFactories.ContainsKey(memberInfo))
                 memberFactories[memberInfo] = factory;

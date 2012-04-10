@@ -54,7 +54,7 @@
         /// </summary>
         /// <param name="memberInfo">The member info.</param>
         /// <param name="factory">The factory.</param>
-        void SetFactory(MemberInfo memberInfo, object factory);
+        void SetMemberFactory(MemberInfo memberInfo, object factory);
 
         /// <summary>
         /// Gets the member factories.

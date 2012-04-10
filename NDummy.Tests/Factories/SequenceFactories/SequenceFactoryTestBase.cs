@@ -86,7 +86,6 @@ namespace NDummy.Tests.Factories.SequenceFactories
 
         protected void IsValidSequence(T minValue, T maxValue, T step,T val1,T val2,T val3)
         {
-
             var settings = new SequenceFactorySettings<T>
             {
                 MinValue = minValue,

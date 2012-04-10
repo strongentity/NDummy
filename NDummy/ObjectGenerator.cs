@@ -140,6 +140,7 @@
 
         private void ConstructMemberGenerators()
         {
+            memberGenerators.Clear();
             foreach(var memberInfo in type.GetMembers(BindingFlags.Public | BindingFlags.Instance))
             {
                 if (memberInfo.MemberType != MemberTypes.Field && memberInfo.MemberType != MemberTypes.Property) continue;
@@ -155,7 +156,7 @@
                 {
                     memberGenerators.Add(memberInfo, generatorSettings.Factories[memberType]);
                 }
-                else if(generalSettings.Factories.ContainsKey(memberType))
+                else if(generalSettings.Factories != null && generalSettings.Factories.ContainsKey(memberType))
                 {
                     memberGenerators.Add(memberInfo, generalSettings.Factories[memberType]);        
                 }
