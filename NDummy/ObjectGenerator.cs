@@ -1,13 +1,14 @@
 ﻿namespace NDummy
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
     using System.Text;
     using NDummy.Utilities;
 
-    public class ObjectGenerator<T> : IGenerator<T>
+    public class ObjectGenerator<T> : IGenerator<T>, IHaveGeneratorSettings
     {
         private int index;
 
@@ -141,13 +142,26 @@
         private void ConstructMemberGenerators()
         {
             memberGenerators.Clear();
+            var enumerableType = typeof(IEnumerable);
             foreach(var memberInfo in type.GetMembers(BindingFlags.Public | BindingFlags.Instance))
             {
                 if (memberInfo.MemberType != MemberTypes.Field && memberInfo.MemberType != MemberTypes.Property) continue;
                 Type memberType = memberInfo.MemberType == MemberTypes.Property
                                       ? (memberInfo as PropertyInfo).PropertyType
                                       : (memberInfo as FieldInfo).FieldType;
-                
+
+                //if(memberType.IsAssignableFrom(enumerableType))
+                //{
+                //    if(memberType.IsGenericType)
+                //    {
+                //        memberType.G
+                //    }
+                //    else
+                //    {
+                        
+                //    }
+                //}
+
                 if(generatorSettings.MemberFactories.ContainsKey(memberInfo))
                 {
                     memberGenerators.Add(memberInfo, generatorSettings.MemberFactories[memberInfo]);
@@ -166,9 +180,17 @@
                     var childParams = new ObjectGeneratorParams{ CurrentDepth = currentDepth + 1, GeneralSettings = generalSettings };
                     var genericType = typeof(ObjectGenerator<>).MakeGenericType(memberType);
                     var newGenerator = Activator.CreateInstance(genericType,childParams);
+                    //apply parent generator settings 
+                    if(generatorSettings.OverrideChildSettings)
+                        ((IHaveGeneratorSettings)newGenerator).Settings.Apply(generatorSettings);
                     memberGenerators.Add(memberInfo, newGenerator);
                 }
             }
+        }
+
+        public IGeneratorSettings Settings
+        {
+            get { return generatorSettings; }
         }
     }
 

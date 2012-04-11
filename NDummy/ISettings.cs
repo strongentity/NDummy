@@ -67,6 +67,15 @@
         /// <param name="customAction">The custom action.</param>
         void AddCustomAction(object customAction);
 
-        IList<object> CustomActions { get; } 
+        IList<object> CustomActions { get; }
+
+        void Apply(IGeneratorSettings settings);
+
+        bool OverrideChildSettings { get; set; }
+    }
+
+    public interface IHaveGeneratorSettings
+    {
+        IGeneratorSettings Settings { get; }
     }
 }

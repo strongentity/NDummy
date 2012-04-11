@@ -46,5 +46,28 @@
                 return customActions;
             }
         }
+
+        public bool OverrideChildSettings { get; set; }
+
+        public void Apply(IGeneratorSettings settings)
+        {
+            foreach (var pair in settings.Factories)
+            {
+                SetFactory(pair.Key, pair.Value);
+            }
+
+            foreach (var pair in settings.MemberFactories)
+            {
+                this.SetMemberFactory(pair.Key, pair.Value); 
+            }
+
+            foreach(var action in settings.CustomActions)
+            {
+                this.AddCustomAction(action);
+            }
+
+            this.MaxDepth = settings.MaxDepth;
+            this.OverrideChildSettings = settings.OverrideChildSettings;
+        }
     }
 }
