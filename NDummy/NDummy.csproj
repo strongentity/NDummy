@@ -61,6 +61,7 @@
     <Compile Include="Specs\CustomActionSpec.cs" />
     <Compile Include="Specs\MaxDepthSpec.cs" />
     <Compile Include="Specs\MemberFactorySpec.cs" />
+    <Compile Include="Specs\OverrideChildGeneratorSpec.cs" />
     <Compile Include="Specs\TypeFactorySpec.cs" />
     <Compile Include="Utilities\TypeUtilities.cs" />
   </ItemGroup>

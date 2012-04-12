@@ -33,5 +33,10 @@
         {
             return new CustomActionSpec<TClass>(action);
         }
+
+        public static IGeneratorSpec OverrideChildGeneratorSettings(bool @override)
+        {
+            return new OverrideChildGeneratorSpec(@override);
+        }
     }
 }
