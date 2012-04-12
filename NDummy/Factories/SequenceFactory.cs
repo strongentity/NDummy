@@ -96,14 +96,18 @@ namespace NDummy.Factories
             {
                 throw new System.ArgumentException("Step can not be zero","settings");
             }
-            if ( settings.Step>0 && settings.MaxValue < settings.MinValue )
+            if (settings.MaxValue <= settings.MinValue)
+            {
+                throw new System.ArgumentException("Max value should be greater than Min value", "settings");
+            }
+            /*if ( settings.Step>0 && settings.MaxValue < settings.MinValue )
             {
                 throw new System.ArgumentException("If step is positive then max should be greater than min", "settings");
             }
             if (settings.Step < 0 && settings.MaxValue > settings.MinValue)
             {
                 throw new System.ArgumentException("If step is negative then min should be greater than max", "settings");
-            }
+            }*/
         }
 
         public override int Generate()
@@ -126,7 +130,7 @@ namespace NDummy.Factories
                         checked
                         {
                             newValue = _currentValue + Step;
-                            if (newValue > MaxValue)
+                            while (newValue > MaxValue)
                             {
                                 var diff = newValue - MaxValue - 1;
                                 newValue = MinValue + diff;
@@ -146,10 +150,10 @@ namespace NDummy.Factories
                         checked
                         {
                             newValue = _currentValue + Step;
-                            if (newValue < MaxValue)
+                            while (newValue < MinValue)
                             {
-                               var diff = MaxValue - newValue - 1;
-                                newValue = MinValue-diff;
+                               var diff = Math.Abs(newValue-MinValue) - 1;
+                                newValue = MaxValue-diff;
                             }
                         }
                     }
@@ -177,7 +181,7 @@ namespace NDummy.Factories
             base(new SequenceFactorySettings<short>()
             {
                 MaxValue = short.MaxValue,
-                MinValue = short.MinValue,
+                MinValue = 1,
                 Step=1
             })
         {
@@ -195,13 +199,10 @@ namespace NDummy.Factories
             {
                 throw new System.ArgumentException("Step can not be zero", "settings");
             }
-            if (settings.Step > 0 && settings.MaxValue < settings.MinValue)
+
+            if (settings.MaxValue <= settings.MinValue)
             {
-                throw new System.ArgumentException("If step is positive then max should be greater than min", "settings");
-            }
-            if (settings.Step < 0 && settings.MaxValue > settings.MinValue)
-            {
-                throw new System.ArgumentException("If step is negative then min should be greater than max", "settings");
+                throw new System.ArgumentException("Max value should be greater than Min value", "settings");
             }
         }
 
@@ -225,7 +226,7 @@ namespace NDummy.Factories
                         checked
                         {
                             newValue = (short) (_currentValue + Step);
-                            if (newValue > MaxValue)
+                            while (newValue > MaxValue)
                             {
                                 var diff = newValue - MaxValue - 1;
                                 newValue = (short) (MinValue + diff);
@@ -245,10 +246,10 @@ namespace NDummy.Factories
                         checked
                         {
                             newValue = (short) (_currentValue + Step);
-                            if (newValue < MaxValue)
+                            while (newValue < MinValue)
                             {
-                                var diff = MaxValue - newValue - 1;
-                                newValue = (short) (MinValue - diff);
+                                var diff = Math.Abs(newValue - MinValue) - 1;
+                                newValue = (short) (MaxValue - diff);
                             }
                         }
                     }
@@ -276,7 +277,7 @@ namespace NDummy.Factories
             base(new SequenceFactorySettings<long>()
             {
                 MaxValue = long.MaxValue,
-                MinValue = long.MinValue,
+                MinValue = 1,
                 Step = 1
             })
         {
@@ -294,13 +295,9 @@ namespace NDummy.Factories
             {
                 throw new System.ArgumentException("Step can not be zero", "settings");
             }
-            if (settings.Step > 0 && settings.MaxValue < settings.MinValue)
+            if (settings.MaxValue <= settings.MinValue)
             {
-                throw new System.ArgumentException("If step is positive then max should be greater than min", "settings");
-            }
-            if (settings.Step < 0 && settings.MaxValue > settings.MinValue)
-            {
-                throw new System.ArgumentException("If step is negative then min should be greater than max", "settings");
+                throw new System.ArgumentException("Max value should be greater than Min value", "settings");
             }
         }
 
@@ -324,7 +321,7 @@ namespace NDummy.Factories
                         checked
                         {
                             newValue = _currentValue + Step;
-                            if (newValue > MaxValue)
+                            while (newValue > MaxValue)
                             {
                                 var diff = newValue - MaxValue - 1;
                                 newValue = MinValue + diff;
@@ -344,10 +341,10 @@ namespace NDummy.Factories
                         checked
                         {
                             newValue = _currentValue + Step;
-                            if (newValue < MaxValue)
+                            while (newValue < MinValue)
                             {
-                                var diff = MaxValue - newValue - 1;
-                                newValue = MinValue - diff;
+                                var diff = Math.Abs(newValue - MinValue) - 1;
+                                newValue = MaxValue - diff;
                             }
                         }
                     }
@@ -375,7 +372,7 @@ namespace NDummy.Factories
             base(new SequenceFactorySettings<byte>()
             {
                 MaxValue = byte.MaxValue,
-                MinValue = byte.MinValue,
+                MinValue = 1,
                 Step = 1
             })
         {
@@ -393,13 +390,9 @@ namespace NDummy.Factories
             {
                 throw new System.ArgumentException("Step can not be zero", "settings");
             }
-            if (settings.Step > 0 && settings.MaxValue < settings.MinValue)
+            if (settings.MaxValue <= settings.MinValue)
             {
-                throw new System.ArgumentException("If step is positive then max should be greater than min", "settings");
-            }
-            if (settings.Step < 0 && settings.MaxValue > settings.MinValue)
-            {
-                throw new System.ArgumentException("If step is negative then min should be greater than max", "settings");
+                throw new System.ArgumentException("Max value should be greater than Min value", "settings");
             }
         }
 
@@ -423,7 +416,7 @@ namespace NDummy.Factories
                         checked
                         {
                             newValue = (byte) (_currentValue + Step);
-                            if (newValue > MaxValue)
+                            while (newValue > MaxValue)
                             {
                                 var diff = newValue - MaxValue - 1;
                                 newValue = (byte) (MinValue + diff);
@@ -445,10 +438,10 @@ namespace NDummy.Factories
                         checked
                         {
                             newValue = (byte) (_currentValue + Step);
-                            if (newValue < MaxValue)
+                            while (newValue < MinValue)
                             {
-                                var diff = MaxValue - newValue - 1;
-                                newValue = (byte) (MinValue - diff);
+                                var diff = Math.Abs(newValue - MinValue) - 1;
+                                newValue = (byte) (MaxValue - diff);
                             }
                         }
                     }
@@ -475,7 +468,7 @@ namespace NDummy.Factories
            base( new SequenceFactorySettings<double>()
             {
                 MaxValue = double.MaxValue,
-                MinValue = double.MinValue,
+                MinValue = 1,
                 Step = 1    
             })
          {
@@ -492,13 +485,9 @@ namespace NDummy.Factories
             {
                 throw new System.ArgumentException("Step can not be zero","settings");
             }
-            if ( settings.Step>0 && settings.MaxValue < settings.MinValue )
+            if (settings.MaxValue <= settings.MinValue)
             {
-                throw new System.ArgumentException("If step is positive then max should be greater than min", "settings");
-            }
-            if (settings.Step < 0 && settings.MaxValue > settings.MinValue)
-            {
-                throw new System.ArgumentException("If step is negative then min should be greater than max", "settings");
+                throw new System.ArgumentException("Max value should be greater than Min value", "settings");
             }
         }
 
@@ -523,14 +512,19 @@ namespace NDummy.Factories
                          checked
                          {
                              newValue = _currentValue + Step;
-                             if (newValue > MaxValue)
-                                 newValue = MinValue;
+                             while (newValue > MaxValue)
+                             {
+                                 var diff = newValue - MaxValue - 1;
+                                 newValue = MinValue + diff;
+                             }
                          }
                      }
                      catch
                      {
-                         newValue = _currentValue + Step;
+                         var rangeBetweenCyclic = MaxValue - _currentValue + 1;
+                         newValue = MinValue + Step - rangeBetweenCyclic;
                      }
+
                  }
                  else if (Step < 0)
                  {
@@ -539,13 +533,17 @@ namespace NDummy.Factories
                          checked
                          {
                              newValue = _currentValue + Step;
-                             if (newValue < MaxValue)
-                                 newValue = MinValue;
+                             while (newValue < MinValue)
+                             {
+                                 var diff = Math.Abs(newValue - MinValue) - 1;
+                                 newValue = MaxValue - diff;
+                             }
                          }
                      }
                      catch
                      {
-                         newValue = MaxValue + Step;
+                         var rangeBetweenCyclic = MaxValue - _currentValue - 1;
+                         newValue = MinValue + Step - rangeBetweenCyclic;
                      }
                  }
                  _currentValue = newValue;
@@ -565,7 +563,7 @@ namespace NDummy.Factories
             base(new SequenceFactorySettings<float>()
             {
                 MaxValue = float.MaxValue,
-                MinValue = float.MinValue,
+                MinValue = 1,
                 Step = 1
             })
         {
@@ -583,13 +581,9 @@ namespace NDummy.Factories
             {
                 throw new System.ArgumentException("Step can not be zero", "settings");
             }
-            if (settings.Step > 0 && settings.MaxValue < settings.MinValue)
+            if (settings.MaxValue <= settings.MinValue)
             {
-                throw new System.ArgumentException("If step is positive then max should be greater than min", "settings");
-            }
-            if (settings.Step < 0 && settings.MaxValue > settings.MinValue)
-            {
-                throw new System.ArgumentException("If step is negative then min should be greater than max", "settings");
+                throw new System.ArgumentException("Max value should be greater than Min value", "settings");
             }
         }
 
@@ -614,13 +608,17 @@ namespace NDummy.Factories
                         checked
                         {
                             newValue = _currentValue + Step;
-                            if (newValue > MaxValue)
-                                newValue = MinValue;
+                            while (newValue > MaxValue)
+                            {
+                                var diff = newValue - MaxValue - 1;
+                                newValue = MinValue + diff;
+                            }
                         }
                     }
                     catch
                     {
-                        newValue = _currentValue + Step;
+                        var rangeBetweenCyclic = MaxValue - _currentValue + 1;
+                        newValue = MinValue + Step - rangeBetweenCyclic;
                     }
                 }
                 else if (Step < 0)
@@ -630,14 +628,19 @@ namespace NDummy.Factories
                         checked
                         {
                             newValue = _currentValue + Step;
-                            if (newValue < MaxValue)
-                                newValue = MinValue;
+                            while (newValue < MinValue)
+                            {
+                                var diff = Math.Abs(newValue - MinValue) - 1;
+                                newValue = MaxValue - diff;
+                            }
                         }
                     }
                     catch
                     {
-                        newValue = MaxValue + Step;
+                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
+                        newValue = MinValue + Step - rangeBetweenCyclic;
                     }
+
                 }
                 _currentValue = newValue;
                 CurrentValue = _currentValue;
@@ -657,7 +660,7 @@ namespace NDummy.Factories
         base(new SequenceFactorySettings<decimal>()
                 {
                      MaxValue = decimal.MaxValue,
-                MinValue = decimal.MinValue,
+                MinValue = 1,
                 Step = 1
                 })
 
@@ -674,13 +677,10 @@ namespace NDummy.Factories
             {
                 throw new System.ArgumentException("Step can not be zero", "settings");
             }
-            if (settings.Step > 0 && settings.MaxValue < settings.MinValue)
+
+            if (settings.MaxValue <= settings.MinValue)
             {
-                throw new System.ArgumentException("If step is positive then max should be greater than min", "settings");
-            }
-            if (settings.Step < 0 && settings.MaxValue > settings.MinValue)
-            {
-                throw new System.ArgumentException("If step is negative then min should be greater than max", "settings");
+                throw new System.ArgumentException("Max value should be greater than Min value", "settings");
             }
         }
 
@@ -705,13 +705,17 @@ namespace NDummy.Factories
                         checked
                         {
                             newValue = _currentValue + Step;
-                            if (newValue > MaxValue)
-                                newValue = MinValue;
+                            while (newValue > MaxValue)
+                            {
+                                var diff = newValue - MaxValue - 1;
+                                newValue = MinValue + diff;
+                            }
                         }
                     }
                     catch
                     {
-                        newValue = _currentValue + Step;
+                        var rangeBetweenCyclic = MaxValue - _currentValue + 1;
+                        newValue = MinValue + Step - rangeBetweenCyclic;
                     }
                 }
                 else if (Step < 0)
@@ -721,13 +725,17 @@ namespace NDummy.Factories
                         checked
                         {
                             newValue = _currentValue + Step;
-                            if (newValue < MaxValue)
-                                newValue = MinValue;
+                            while (newValue < MinValue)
+                            {
+                                var diff = Math.Abs(newValue - MinValue) - 1;
+                                newValue = MaxValue - diff;
+                            }
                         }
                     }
                     catch
                     {
-                        newValue = MaxValue + Step;
+                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
+                        newValue = MinValue + Step - rangeBetweenCyclic;
                     }
                 }
                 _currentValue = newValue;
@@ -750,7 +758,7 @@ namespace NDummy.Factories
             base(new SequenceFactorySettings<uint>()
             {
                 MaxValue = uint.MaxValue,
-                MinValue = uint.MinValue,
+                MinValue = 1,
                 Step = 1
             })
         {
@@ -768,13 +776,9 @@ namespace NDummy.Factories
             {
                 throw new System.ArgumentException("Step can not be zero", "settings");
             }
-            if (settings.Step > 0 && settings.MaxValue < settings.MinValue)
+            if (settings.MaxValue <= settings.MinValue)
             {
-                throw new System.ArgumentException("If step is positive then max should be greater than min", "settings");
-            }
-            if (settings.Step < 0 && settings.MaxValue > settings.MinValue)
-            {
-                throw new System.ArgumentException("If step is negative then min should be greater than max", "settings");
+                throw new System.ArgumentException("Max value should be greater than Min value", "settings");
             }
         }
 
@@ -790,7 +794,7 @@ namespace NDummy.Factories
 
                 if (_currentValue != CurrentValue)
                     _currentValue = CurrentValue;
-                long newValue = 0;
+                uint newValue = 0;
 
                 if (Step > 0)
                 {
@@ -798,14 +802,18 @@ namespace NDummy.Factories
                     {
                         checked
                         {
-                            newValue = (long) (_currentValue) + Step;
-                            if (newValue > MaxValue)
-                                newValue = (long) MinValue;
+                            newValue = _currentValue + Step;
+                            while (newValue > MaxValue)
+                            {
+                                var diff = newValue - MaxValue - 1;
+                                newValue = (uint)(MinValue + diff);
+                            }
                         }
                     }
                     catch
                     {
-                        newValue = (long) (_currentValue + Step);
+                        var rangeBetweenCyclic = MaxValue - _currentValue + 1;
+                        newValue = MinValue + Step - rangeBetweenCyclic;
                     }
                 }
                 else if (Step < 0)
@@ -814,17 +822,22 @@ namespace NDummy.Factories
                     {
                         checked
                         {
-                            newValue = (long) (_currentValue) + Step;
-                            if (newValue < MaxValue)
-                                newValue = (long) MinValue;
+                            newValue = _currentValue + Step;
+
+                            while (newValue < MinValue)
+                            {
+                                var diff = Math.Abs(newValue - MinValue) - 1;
+                                newValue = (uint) (MaxValue - diff);
+                            }
                         }
                     }
                     catch
                     {
-                        newValue = (long) (MaxValue + Step);
+                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
+                        newValue = MinValue + Step - rangeBetweenCyclic;
                     }
                 }
-                _currentValue = (uint)newValue;
+                _currentValue = newValue;
                 CurrentValue = _currentValue;
             }
             return _currentValue;
@@ -844,7 +857,7 @@ namespace NDummy.Factories
             base(new SequenceFactorySettings<ushort>()
             {
                 MaxValue = ushort.MaxValue,
-                MinValue = ushort.MinValue,
+                MinValue = 1,
                 Step = 1
             })
         {
@@ -862,13 +875,9 @@ namespace NDummy.Factories
             {
                 throw new System.ArgumentException("Step can not be zero", "settings");
             }
-            if (settings.Step > 0 && settings.MaxValue < settings.MinValue)
+            if (settings.MaxValue <= settings.MinValue)
             {
-                throw new System.ArgumentException("If step is positive then max should be greater than min", "settings");
-            }
-            if (settings.Step < 0 && settings.MaxValue > settings.MinValue)
-            {
-                throw new System.ArgumentException("If step is negative then min should be greater than max", "settings");
+                throw new System.ArgumentException("Max value should be greater than Min value", "settings");
             }
         }
 
@@ -893,13 +902,17 @@ namespace NDummy.Factories
                         checked
                         {
                             newValue = (ushort) (_currentValue + Step);
-                            if (newValue > MaxValue)
-                                newValue = MinValue;
+                            while (newValue > MaxValue)
+                            {
+                                var diff = newValue - MaxValue - 1;
+                                newValue = (ushort) (MinValue + diff);
+                            }
                         }
                     }
                     catch
                     {
-                        newValue = (ushort) (_currentValue + Step);
+                        var rangeBetweenCyclic = MaxValue - _currentValue + 1;
+                        newValue = (ushort) (MinValue + Step - rangeBetweenCyclic);
                     }
                 }
                 else if (Step < 0)
@@ -909,13 +922,17 @@ namespace NDummy.Factories
                         checked
                         {
                             newValue = (ushort) (_currentValue + Step);
-                            if (newValue < MaxValue)
-                                newValue = MinValue;
+                            while (newValue < MinValue)
+                            {
+                                var diff = Math.Abs(newValue - MinValue) - 1;
+                                newValue = (ushort) (MaxValue - diff);
+                            }
                         }
                     }
                     catch
                     {
-                        newValue = (ushort) (MaxValue + Step);
+                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
+                        newValue = (ushort) (MinValue + Step - rangeBetweenCyclic);
                     }
                 }
                 _currentValue = newValue;
@@ -937,8 +954,8 @@ namespace NDummy.Factories
         public UInt64SequenceFactory() :
             base(new SequenceFactorySettings<ulong>()
             {
-                MaxValue = ushort.MaxValue,
-                MinValue = ushort.MinValue,
+                MaxValue = ulong.MaxValue,
+                MinValue = 1,
                 Step = 1
             })
         {
@@ -956,13 +973,9 @@ namespace NDummy.Factories
             {
                 throw new System.ArgumentException("Step can not be zero", "settings");
             }
-            if (settings.Step > 0 && settings.MaxValue < settings.MinValue)
+            if (settings.MaxValue <= settings.MinValue)
             {
-                throw new System.ArgumentException("If step is positive then max should be greater than min", "settings");
-            }
-            if (settings.Step < 0 && settings.MaxValue > settings.MinValue)
-            {
-                throw new System.ArgumentException("If step is negative then min should be greater than max", "settings");
+                throw new System.ArgumentException("Max value should be greater than Min value", "settings");
             }
         }
 
@@ -979,7 +992,6 @@ namespace NDummy.Factories
                 if (_currentValue != CurrentValue)
                     _currentValue = CurrentValue;
                 ulong newValue = 0;
-
                 if (Step > 0)
                 {
                     try
@@ -987,13 +999,17 @@ namespace NDummy.Factories
                         checked
                         {
                             newValue = _currentValue + Step;
-                            if (newValue > MaxValue)
-                                newValue = MinValue;
+                            while (newValue > MaxValue)
+                            {
+                                var diff = newValue - MaxValue - 1;
+                                newValue = MinValue + diff;
+                            }
                         }
                     }
                     catch
                     {
-                        newValue = _currentValue + Step;
+                        var rangeBetweenCyclic = MaxValue - _currentValue + 1;
+                        newValue = MinValue + Step - rangeBetweenCyclic;
                     }
                 }
                 else if (Step < 0)
@@ -1003,13 +1019,17 @@ namespace NDummy.Factories
                         checked
                         {
                             newValue = _currentValue + Step;
-                            if (newValue < MaxValue)
-                                newValue = MinValue;
+                            while (newValue < MinValue)
+                            {
+                                var diff = Math.Abs((decimal)(newValue - MinValue)) - 1;
+                                newValue = MaxValue - (ulong) diff;
+                            }
                         }
                     }
                     catch
                     {
-                        newValue = MaxValue + Step;
+                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
+                        newValue = MinValue + Step - rangeBetweenCyclic;
                     }
                 }
                 _currentValue = newValue;
@@ -1030,7 +1050,7 @@ namespace NDummy.Factories
             base(new SequenceFactorySettings<sbyte>()
             {
                 MaxValue = sbyte.MaxValue,
-                MinValue = sbyte.MinValue,
+                MinValue = 1,
                 Step = 1
             })
         {
@@ -1048,14 +1068,11 @@ namespace NDummy.Factories
             {
                 throw new System.ArgumentException("Step can not be zero", "settings");
             }
-            if (settings.Step > 0 && settings.MaxValue < settings.MinValue)
+            if (settings.MaxValue <= settings.MinValue)
             {
-                throw new System.ArgumentException("If step is positive then max should be greater than min", "settings");
+                throw new System.ArgumentException("Max value should be greater than Min value", "settings");
             }
-            if (settings.Step < 0 && settings.MaxValue > settings.MinValue)
-            {
-                throw new System.ArgumentException("If step is negative then min should be greater than max", "settings");
-            }
+
         }
 
         public override sbyte Generate()
@@ -1078,13 +1095,17 @@ namespace NDummy.Factories
                         checked
                         {
                             newValue = (sbyte) (_currentValue + Step);
-                            if (newValue > MaxValue)
-                                newValue = MinValue;
+                            while (newValue > MaxValue)
+                            {
+                                var diff = newValue - MaxValue - 1;
+                                newValue = (sbyte) (MinValue + diff);
+                            }
                         }
                     }
                     catch
                     {
-                        newValue = (sbyte) (_currentValue + Step);
+                        var rangeBetweenCyclic = MaxValue - _currentValue + 1;
+                        newValue = (sbyte) (MinValue + Step - rangeBetweenCyclic);
                     }
                 }
                 else if (Step < 0)
@@ -1094,13 +1115,17 @@ namespace NDummy.Factories
                         checked
                         {
                             newValue = (sbyte) (_currentValue + Step);
-                            if (newValue < MaxValue)
-                                newValue = MinValue;
+                            while (newValue < MinValue)
+                            {
+                                var diff = Math.Abs(newValue - MinValue) - 1;
+                                newValue = (sbyte) (MaxValue - diff);
+                            }
                         }
                     }
                     catch
                     {
-                        newValue = (sbyte) (MaxValue + Step);
+                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
+                        newValue = (sbyte) (MinValue + Step - rangeBetweenCyclic);
                     }
                 }
                 _currentValue = newValue;
@@ -1122,8 +1147,9 @@ namespace NDummy.Factories
         public BigIntSequenceFactory() :
             base(new SequenceFactorySettings<BigInteger>()
             {
-                MaxValue = long.MaxValue,
-                MinValue = long.MinValue,
+               // MaxValue = BigInteger.Min(long.MaxValue,),
+               MaxValue = long.MaxValue,
+               MinValue = 1,
                 Step = 1
             })
         {
@@ -1141,13 +1167,9 @@ namespace NDummy.Factories
             {
                 throw new System.ArgumentException("Step can not be zero", "settings");
             }
-            if (settings.Step > 0 && settings.MaxValue < settings.MinValue)
+            if (settings.MaxValue <= settings.MinValue)
             {
-                throw new System.ArgumentException("If step is positive then max should be greater than min", "settings");
-            }
-            if (settings.Step < 0 && settings.MaxValue > settings.MinValue)
-            {
-                throw new System.ArgumentException("If step is negative then min should be greater than max", "settings");
+                throw new System.ArgumentException("Max value should be greater than Min value", "settings");
             }
         }
 
@@ -1172,13 +1194,17 @@ namespace NDummy.Factories
                         checked
                         {
                             newValue = _currentValue + Step;
-                            if (newValue > MaxValue)
-                                newValue = MinValue;
+                            while (newValue > MaxValue)
+                            {
+                                var diff = newValue - MaxValue - 1;
+                                newValue = MinValue + diff;
+                            }
                         }
                     }
                     catch
                     {
-                        newValue = _currentValue + Step;
+                        var rangeBetweenCyclic = MaxValue - _currentValue + 1;
+                        newValue = MinValue + Step - rangeBetweenCyclic;
                     }
                 }
                 else if (Step < 0)
@@ -1188,13 +1214,17 @@ namespace NDummy.Factories
                         checked
                         {
                             newValue = _currentValue + Step;
-                            if (newValue < MaxValue)
-                                newValue = MinValue;
+                            while (newValue < MinValue)
+                            {
+                                var diff = Math.Abs((decimal)(newValue - MinValue)) - 1;
+                                newValue = MaxValue - (BigInteger) diff;
+                            }
                         }
                     }
                     catch
                     {
-                        newValue = MaxValue + Step;
+                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
+                        newValue = MinValue + Step - rangeBetweenCyclic;
                     }
                 }
                 _currentValue = newValue;

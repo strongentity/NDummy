@@ -12,7 +12,7 @@ namespace NDummy.Tests.Factories.SequenceFactories
         [Theory]
         [InlineData(short.MinValue, short.MaxValue, (short)5, (short)-32768, (short)-32763, (short)-32758)]
         [InlineData((short)-10, (short)10,(short)20, (short)-10,(short)10,(short)9)]
-        [InlineData((short)10, (short)-1000, (short)-575, (short)10, (short)-565, (short)-129)]
+        [InlineData((short)10, (short)1000, (short)-575, (short)10, (short)426, (short)842)]
         public void CheckGeneratedSequence(short minValue,short maxValue,short step,short val1, short val2, short val3)
         {
             IsValidSequence(minValue, maxValue, step, val1, val2, val3);
