@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="DefaultSettings.cs" />
     <Compile Include="Dummy.cs" />
+    <Compile Include="Factories\BooleanFactory.cs" />
     <Compile Include="Factories\FuncAdapter.cs" />
     <Compile Include="Factories\GuidFactory.cs" />
     <Compile Include="Factories\RandomFactory.cs" />

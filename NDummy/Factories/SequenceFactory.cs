@@ -1234,4 +1234,184 @@ namespace NDummy.Factories
         }
 
     }
+
+    public class BoolSequenceFactory : SequenceFactory<bool>
+    {
+        //private int _currentValue;
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public BoolSequenceFactory() :
+            base(new SequenceFactorySettings<bool>()
+            {
+                MaxValue = true,
+                MinValue = false,
+                Step = true
+            })
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="settings"></param>
+        public BoolSequenceFactory(SequenceFactorySettings<bool> settings)
+            : base(settings)
+        {
+            if (settings.Step != true)
+            {
+                throw new System.ArgumentException("For bool step must be true", "settings");
+            }
+            if (settings.MinValue != false)
+            {
+                throw new System.ArgumentException("Min value should be false", "settings");
+            }
+            if (settings.MaxValue != true)
+            {
+                throw new System.ArgumentException("Max value should be true", "settings");
+            }
+            /*if ( settings.Step>0 && settings.MaxValue < settings.MinValue )
+            {
+                throw new System.ArgumentException("If step is positive then max should be greater than min", "settings");
+            }
+            if (settings.Step < 0 && settings.MaxValue > settings.MinValue)
+            {
+                throw new System.ArgumentException("If step is negative then min should be greater than max", "settings");
+            }*/
+        }
+
+        public override bool Generate()
+        {
+            bool _currentValue = MinValue;
+            if (IsFirstValue)
+            {
+                IsFirstValue = false;
+            }
+            else
+            {
+
+                if (_currentValue != CurrentValue)
+                    _currentValue = CurrentValue;
+                bool newValue = false;
+                if (Step ==true)
+                {
+                   newValue= !_currentValue;
+                }
+                
+                _currentValue = newValue;
+                CurrentValue = _currentValue;
+            }
+            return _currentValue;
+        }
+
+    }
+
+    public class CharSequenceFactory : SequenceFactory<char>
+    {
+        //private int _currentValue;
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public CharSequenceFactory() :
+            base(new SequenceFactorySettings<char>()
+            {
+                MaxValue = char.MaxValue,
+                MinValue = char.MinValue,
+                Step = (char) 1
+            })
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="settings"></param>
+        public CharSequenceFactory(SequenceFactorySettings<char> settings)
+            : base(settings)
+        {
+            if (settings.Step == 0)
+            {
+                throw new System.ArgumentException("Step can not be zero", "settings");
+            }
+            if (settings.MaxValue <= settings.MinValue)
+            {
+                throw new System.ArgumentException("Max value should be greater than Min value", "settings");
+            }
+            /*if ( settings.Step>0 && settings.MaxValue < settings.MinValue )
+            {
+                throw new System.ArgumentException("If step is positive then max should be greater than min", "settings");
+            }
+            if (settings.Step < 0 && settings.MaxValue > settings.MinValue)
+            {
+                throw new System.ArgumentException("If step is negative then min should be greater than max", "settings");
+            }*/
+        }
+
+        public override char Generate()
+        {
+            char _currentValue = MinValue;
+            if (IsFirstValue)
+            {
+                IsFirstValue = false;
+            }
+            else
+            {
+
+                if (_currentValue != CurrentValue)
+                    _currentValue = CurrentValue;
+                char newValue ='0';
+                if (Step > 0)
+                {
+                    try
+                    {
+                        checked
+                        {
+                            newValue = (char) (_currentValue + Step);
+                            while (newValue > MaxValue)
+                            {
+                                var diff = newValue - MaxValue - 1;
+                                newValue = (char) (MinValue + diff);
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        var rangeBetweenCyclic = MaxValue - _currentValue + 1;
+                        newValue = (char) (MinValue + Step - rangeBetweenCyclic);
+                    }
+                }
+                else if (Step < 0)
+                {
+                    try
+                    {
+                        checked
+                        {
+                            newValue = (char) (_currentValue + Step);
+                            while (newValue < MinValue)
+                            {
+                                var diff = Math.Abs(newValue - MinValue) - 1;
+                                newValue = (char) (MaxValue - diff);
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
+                        newValue = (char) (MinValue + Step - rangeBetweenCyclic);
+                    }
+                }
+                _currentValue = newValue;
+                CurrentValue = _currentValue;
+            }
+            return _currentValue;
+        }
+
+    }
+
 }
