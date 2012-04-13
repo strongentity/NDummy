@@ -1232,7 +1232,6 @@ namespace NDummy.Factories
             }
             return _currentValue;
         }
-
     }
 
     public class BoolSequenceFactory : SequenceFactory<bool>

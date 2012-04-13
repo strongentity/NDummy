@@ -1,7 +1,9 @@
 ﻿namespace NDummy
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Text;
 
@@ -20,7 +22,9 @@
             SetFactory(new RandomUInt32Factory());
             SetFactory(new RandomInt64Factory());
             SetFactory(new RandomUInt64Factory());
+
             //TODO add more types
+
         }
     }
 }

@@ -25,12 +25,6 @@
         /// <returns>The current generator instance</returns>
         IGenerator<T> Configure(params IGeneratorSpec[] specs);
 
-        /// <summary>
-        /// Generates the collection of T.
-        /// </summary>
-        /// <param name="numberOfItems">The number of items.</param>
-        /// <returns>Collection of T</returns>
-        ICollection<T> GenerateCollection(int numberOfItems);
     }
 
     public class ConstructorArguments
