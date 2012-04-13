@@ -1202,6 +1202,5 @@ namespace NDummy.Factories
             }
             return _currentValue;
         }
-
     }
 }

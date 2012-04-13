@@ -55,6 +55,8 @@
     <Compile Include="CustomTypes\CustomEnum.cs" />
     <Compile Include="CustomTypes\CustomStruct.cs" />
     <Compile Include="CustomTypes\ICustomInterface.cs" />
+    <Compile Include="Factories\CollectionFactories\DictionaryFactoryTest.cs" />
+    <Compile Include="Factories\CollectionFactories\ListFactoryTest.cs" />
     <Compile Include="Factories\GuidFactoryTest.cs" />
     <Compile Include="Factories\RandomFactories\RandomBooleanFactoryTest.cs" />
     <Compile Include="Factories\RandomFactories\RandomByteFactoryTest.cs" />
