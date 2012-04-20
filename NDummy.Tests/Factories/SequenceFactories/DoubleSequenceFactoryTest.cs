@@ -12,8 +12,8 @@
         [Theory]
         [InlineData(0.0007, 0.001, 0.0001, 0.0007, 0.0008, 0.0009)]
         [InlineData(1.2, 3.6, 1.2, 1.2, 2.4, 3.6)]
-        [InlineData(1.2, -2.0, -2.2, 1.2, -1, 1)]
-        [InlineData(10, -10, -15, 10, -5, 1)]
+        [InlineData(1.2, 2.0, -2.2, 1.2, 1.6, 1)]
+        [InlineData(10, 30, -15, 10, -5, 1)]
        // [InlineData(-10, 10, 2, -10, -8, -6)]
         public void CheckGeneratedSequence(double  minValue, double maxValue, double step, double val1, double val2, double val3)
         {

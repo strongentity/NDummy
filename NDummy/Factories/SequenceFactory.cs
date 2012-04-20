@@ -159,8 +159,8 @@ namespace NDummy.Factories
                     }
                     catch
                     {
-                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
-                        newValue = MinValue + Step - rangeBetweenCyclic;
+                        var rangeBetweenCyclic =  MinValue - _currentValue + 1;
+                        newValue = MaxValue + Step + rangeBetweenCyclic;
                     }
                 }
                 _currentValue = newValue;
@@ -255,8 +255,8 @@ namespace NDummy.Factories
                     }
                     catch
                     {
-                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
-                        newValue = (short) (MinValue + Step - rangeBetweenCyclic);
+                        var rangeBetweenCyclic = MinValue - _currentValue + 1;
+                        newValue = (short) (MaxValue + Step + rangeBetweenCyclic);
                     }
                 }
                 _currentValue = newValue;
@@ -350,8 +350,8 @@ namespace NDummy.Factories
                     }
                     catch
                     {
-                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
-                        newValue = MinValue + Step - rangeBetweenCyclic;
+                        var rangeBetweenCyclic = MinValue - _currentValue + 1;
+                        newValue = MaxValue + Step + rangeBetweenCyclic;
                     }
                 }
                 _currentValue = newValue;
@@ -447,8 +447,8 @@ namespace NDummy.Factories
                     }
                     catch
                     {
-                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
-                        newValue = (byte) (MinValue + Step - rangeBetweenCyclic);
+                        var rangeBetweenCyclic = MinValue - _currentValue + 1;
+                        newValue = (byte) (MaxValue + Step + rangeBetweenCyclic);
                     }
                 }
                 _currentValue = newValue;
@@ -542,8 +542,8 @@ namespace NDummy.Factories
                      }
                      catch
                      {
-                         var rangeBetweenCyclic = MaxValue - _currentValue - 1;
-                         newValue = MinValue + Step - rangeBetweenCyclic;
+                         var rangeBetweenCyclic = MinValue - _currentValue + 1;
+                         newValue = MaxValue + Step + rangeBetweenCyclic;
                      }
                  }
                  _currentValue = newValue;
@@ -637,8 +637,8 @@ namespace NDummy.Factories
                     }
                     catch
                     {
-                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
-                        newValue = MinValue + Step - rangeBetweenCyclic;
+                        var rangeBetweenCyclic = MinValue - _currentValue + 1;
+                        newValue = MaxValue + Step + rangeBetweenCyclic;
                     }
 
                 }
@@ -734,8 +734,8 @@ namespace NDummy.Factories
                     }
                     catch
                     {
-                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
-                        newValue = MinValue + Step - rangeBetweenCyclic;
+                        var rangeBetweenCyclic = MinValue - _currentValue + 1;
+                        newValue = MaxValue + Step + rangeBetweenCyclic;
                     }
                 }
                 _currentValue = newValue;
@@ -833,8 +833,8 @@ namespace NDummy.Factories
                     }
                     catch
                     {
-                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
-                        newValue = MinValue + Step - rangeBetweenCyclic;
+                        var rangeBetweenCyclic = MinValue - _currentValue + 1;
+                        newValue = MaxValue + Step + rangeBetweenCyclic;
                     }
                 }
                 _currentValue = newValue;
@@ -931,8 +931,8 @@ namespace NDummy.Factories
                     }
                     catch
                     {
-                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
-                        newValue = (ushort) (MinValue + Step - rangeBetweenCyclic);
+                        var rangeBetweenCyclic = MinValue - _currentValue + 1;
+                        newValue = (ushort) (MaxValue + Step + rangeBetweenCyclic);
                     }
                 }
                 _currentValue = newValue;
@@ -1028,8 +1028,8 @@ namespace NDummy.Factories
                     }
                     catch
                     {
-                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
-                        newValue = MinValue + Step - rangeBetweenCyclic;
+                        var rangeBetweenCyclic = MinValue - _currentValue + 1;
+                        newValue = MaxValue + Step + rangeBetweenCyclic;
                     }
                 }
                 _currentValue = newValue;
@@ -1124,8 +1124,8 @@ namespace NDummy.Factories
                     }
                     catch
                     {
-                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
-                        newValue = (sbyte) (MinValue + Step - rangeBetweenCyclic);
+                        var rangeBetweenCyclic = MinValue - _currentValue + 1;
+                        newValue = (sbyte) (MaxValue + Step + rangeBetweenCyclic);
                     }
                 }
                 _currentValue = newValue;
@@ -1223,8 +1223,8 @@ namespace NDummy.Factories
                     }
                     catch
                     {
-                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
-                        newValue = MinValue + Step - rangeBetweenCyclic;
+                        var rangeBetweenCyclic = MinValue - _currentValue + 1;
+                        newValue = MaxValue + Step + rangeBetweenCyclic;
                     }
                 }
                 _currentValue = newValue;
@@ -1401,8 +1401,8 @@ namespace NDummy.Factories
                     }
                     catch
                     {
-                        var rangeBetweenCyclic = MaxValue - _currentValue - 1;
-                        newValue = (char) (MinValue + Step - rangeBetweenCyclic);
+                        var rangeBetweenCyclic = MinValue - _currentValue + 1;
+                        newValue = (char) (MaxValue + Step + rangeBetweenCyclic);
                     }
                 }
                 _currentValue = newValue;

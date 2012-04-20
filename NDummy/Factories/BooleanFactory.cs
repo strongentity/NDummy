@@ -9,16 +9,17 @@
     {
         public BooleanFactory():this(false)
         {}
-
-        public BooleanFactory(bool initialValue){}
         protected bool CurrentValue { get; set; }
+
+        public BooleanFactory(bool initialValue)
+        {
+            CurrentValue = initialValue;
+        }
+        
         public bool Generate()
         {
-            bool _currentValue = false;
-            if (_currentValue == CurrentValue)
-            _currentValue  =!CurrentValue;
-            CurrentValue = _currentValue;
-            return _currentValue;
+            CurrentValue  =!CurrentValue;
+            return CurrentValue;
         }
     }
 }
