@@ -11,5 +11,10 @@
         {
             return Guid.NewGuid();
         }
+
+        object IFactory.Generate()
+        {
+            return this.Generate();
+        }
     }
 }

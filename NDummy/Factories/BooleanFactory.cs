@@ -21,5 +21,10 @@
             CurrentValue  =!CurrentValue;
             return CurrentValue;
         }
+
+        object IFactory.Generate()
+        {
+            return this.Generate();
+        }
     }
 }

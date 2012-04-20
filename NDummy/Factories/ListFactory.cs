@@ -33,5 +33,10 @@
                 list.Add(factory.Generate());
             return list;
         }
+
+        object IFactory.Generate()
+        {
+            return this.Generate();
+        }
     }
 }

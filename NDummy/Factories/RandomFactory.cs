@@ -51,6 +51,11 @@
         /// </summary>
         public T MaxValue { get; private set; }
 
+
+        object IFactory.Generate()
+        {
+            return this.Generate();
+        }
     }
 
     /// <summary>

@@ -1,19 +1,16 @@
-﻿using System.Numerics;
-
-namespace NDummy.Factories
+﻿namespace NDummy.Factories
 {
     using System;
+    using System.Numerics;
 
     /*
      * 
      * int+, short+, byte+, bool, long+, uint++, ushort++, sbyte+, ulong++, float+, double+, decimal+, BigInteger+
      */
     public abstract class SequenceFactory<T> : IFactory<T> where T:struct, IComparable
-    {
-        
+    {   
         protected SequenceFactory(SequenceFactorySettings<T> settings)
         {
-
             if (settings != null)
             {
                 MinValue = settings.MinValue;
@@ -22,7 +19,6 @@ namespace NDummy.Factories
                 CurrentValue = settings.MinValue;
                 IsFirstValue = true;
             }
-
         }
 
         /// <summary>
@@ -55,6 +51,11 @@ namespace NDummy.Factories
         /// 
         /// </summary>
         protected bool IsFirstValue { get; set; }
+
+        object IFactory.Generate()
+        {
+            return this.Generate();
+        }
     }
 
     public class SequenceFactorySettings<T>
