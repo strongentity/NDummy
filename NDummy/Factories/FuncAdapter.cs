@@ -18,5 +18,10 @@
         {
             return func();
         }
+
+        object IFactory.Generate()
+        {
+            return this.Generate();
+        }
     }
 }

@@ -116,15 +116,13 @@
                 if(generatorPair.Key.MemberType == MemberTypes.Property)
                 {
                     var propInfo = generatorPair.Key as PropertyInfo;
-                    value = generatorPair.Value.GetType().InvokeMember(
-                        "Generate", BindingFlags.Public | BindingFlags.Instance | BindingFlags.InvokeMethod, null, generatorPair.Value, null);
+                    value = (generatorPair.Value as IFactory).Generate();
                     propInfo.SetValue(instance, value, null);
                 }
                 else
                 {
                     var fieldInfo = generatorPair.Key as FieldInfo;
-                    value = generatorPair.Value.GetType().InvokeMember(
-                        "Generate", BindingFlags.Public | BindingFlags.Instance | BindingFlags.InvokeMethod, null, generatorPair.Value, null);
+                    value = (generatorPair.Value as IFactory).Generate(); ;
                     fieldInfo.SetValue(instance, value);
                 }
             }
@@ -191,6 +189,11 @@
         public IGeneratorSettings Settings
         {
             get { return generatorSettings; }
+        }
+
+        object IFactory.Generate()
+        {
+            return this.Generate();
         }
     }
 

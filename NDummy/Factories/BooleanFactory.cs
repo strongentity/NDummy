@@ -10,7 +10,11 @@
         public BooleanFactory():this(false)
         {}
 
-        public BooleanFactory(bool initialValue){}
+        public BooleanFactory(bool initialValue)
+        {
+            
+
+        }
         protected bool CurrentValue { get; set; }
         public bool Generate()
         {
@@ -19,6 +23,11 @@
             _currentValue  =!CurrentValue;
             CurrentValue = _currentValue;
             return _currentValue;
+        }
+
+        object IFactory.Generate()
+        {
+            return this.Generate();
         }
     }
 }

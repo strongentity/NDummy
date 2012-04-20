@@ -49,5 +49,10 @@
             }
             return collection;
         }
+
+        object IFactory.Generate()
+        {
+            return this.Generate();
+        }
     }
 }

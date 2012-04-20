@@ -44,6 +44,7 @@
     <Compile Include="DefaultSettings.cs" />
     <Compile Include="Dummy.cs" />
     <Compile Include="Factories\BooleanFactory.cs" />
+    <Compile Include="Factories\CollectionGenerator.cs" />
     <Compile Include="Factories\DictionaryFactory.cs" />
     <Compile Include="Factories\FuncAdapter.cs" />
     <Compile Include="Factories\GuidFactory.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="GeneratorExtensions.cs" />
     <Compile Include="GeneratorPredicate.cs" />
     <Compile Include="GeneratorSettings.cs" />
+    <Compile Include="ICollectionGenerator.cs" />
     <Compile Include="IListFactory.cs" />
     <Compile Include="IFactory.cs" />
     <Compile Include="IGenerator.cs" />

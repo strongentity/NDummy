@@ -25,6 +25,7 @@ namespace NDummy.Tests.Factories.SequenceFactories
         [InlineData(10, 20, -15, 10, 17, 13)]
         [InlineData(-1, int.MaxValue, int.MinValue, -1, 0, 1)]
         [InlineData(10, 20, 30, 10, 18, 15)]
+        [InlineData(int.MinValue,10,-4,int.MinValue,7, 3)]
         public  void CheckGeneratedSequence(int minValue,int maxValue,int step,int val1,int val2,int val3)
         {
             IsValidSequence(minValue,maxValue,step,val1,val2,val3);
