@@ -51,6 +51,7 @@
     <Compile Include="Factories\ListFactory.cs" />
     <Compile Include="Factories\RandomFactory.cs" />
     <Compile Include="Factories\SequenceFactory.cs" />
+    <Compile Include="Factories\StringFactory.cs" />
     <Compile Include="GeneratorExtensions.cs" />
     <Compile Include="GeneratorPredicate.cs" />
     <Compile Include="GeneratorSettings.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="IFactory.cs" />
     <Compile Include="IGenerator.cs" />
     <Compile Include="IGeneratorPredicate.cs" />
+    <Compile Include="INeedMemberInfo.cs" />
     <Compile Include="ISettings.cs" />
     <Compile Include="IGeneratorSpec.cs" />
     <Compile Include="ObjectGenerator.cs" />

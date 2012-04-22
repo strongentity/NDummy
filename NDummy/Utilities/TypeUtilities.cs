@@ -1,6 +1,7 @@
 ﻿namespace NDummy.Utilities
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
@@ -50,6 +51,17 @@
         public static bool IsBaseType(this Type type)
         {
             return baseTypes.Contains(type);
+        }
+
+        public static bool IsCollectionType(this Type type)
+        {
+            if (type.IsArray) 
+                return true;
+
+            if (type.IsAssignableFrom(typeof(IEnumerable))) 
+                return true;
+
+            return false;
         }
     }
 }

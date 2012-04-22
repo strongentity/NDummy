@@ -9,9 +9,9 @@
     {
         private readonly Type targetType;
 
-        private readonly object factory;
+        private readonly IFactory factory;
 
-        public TypeFactorySpec(Type targetType, object factory)
+        public TypeFactorySpec(Type targetType,IFactory factory)
         {
             this.targetType = targetType;
             this.factory = factory;

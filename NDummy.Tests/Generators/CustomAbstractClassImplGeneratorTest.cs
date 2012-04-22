@@ -60,7 +60,7 @@
         [InlineData("csharp rocks")]
         public void GenerateShouldRespectGeneralSettings(string input)
         {
-            var generalDictionary = new Dictionary<Type, object>();
+            var generalDictionary = new Dictionary<Type, IFactory>();
             var factoryMock = new Mock<IFactory<string>>();
             factoryMock.Setup(s => s.Generate()).Returns(input);
             factoryMock.As<IFactory>().Setup(s => s.Generate()).Returns(input);

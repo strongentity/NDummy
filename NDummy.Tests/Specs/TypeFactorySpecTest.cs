@@ -18,7 +18,7 @@
         public void CanAddTypeFactory()
         {
             var type = It.IsAny<Type>();
-            var factory = new object();
+            var factory = It.IsAny<IFactory>();
             var mock = new Mock<IGeneratorSettings>();
             var spec = new TypeFactorySpec(type, factory);
             spec.Apply(mock.Object);
