@@ -148,23 +148,27 @@
                                       ? (memberInfo as PropertyInfo).PropertyType
                                       : (memberInfo as FieldInfo).FieldType;
 
+                IFactory factory = null;
+
                 if(memberType.IsCollectionType())
                 {
-                    var collectionFactory = generalSettings.CollectionGenerator.Generate(memberType);
-                    memberGenerators.Add(memberInfo, collectionFactory);
+                    factory = generalSettings.CollectionGenerator.Generate(memberType);
                 }
-
-                if(generatorSettings.MemberFactories.ContainsKey(memberInfo))
+                else if(generatorSettings.MemberFactories.ContainsKey(memberInfo))
                 {
-                    memberGenerators.Add(memberInfo, generatorSettings.MemberFactories[memberInfo]);
-                }`
+                    factory = generatorSettings.MemberFactories[memberInfo];
+                }
                 else if(generatorSettings.Factories.ContainsKey(memberType))
                 {
-                    memberGenerators.Add(memberInfo, generatorSettings.Factories[memberType]);
+                    factory = generatorSettings.Factories[memberType];
                 }
                 else if(generalSettings.Factories != null && generalSettings.Factories.ContainsKey(memberType))
                 {
-                    memberGenerators.Add(memberInfo, generalSettings.Factories[memberType]);        
+                    factory = generalSettings.Factories[memberType];
+                }
+                else if(generalSettings.LazyFactories != null && generalSettings.LazyFactories.ContainsKey(memberType))
+                {
+                    factory = generalSettings.LazyFactories[memberType]();
                 }
                 else
                 {
@@ -175,8 +179,16 @@
                     //apply parent generator settings 
                     if(generatorSettings.OverrideChildSettings)
                         ((IHaveGeneratorSettings)newGenerator).Settings.Apply(generatorSettings);
-                    memberGenerators.Add(memberInfo, newGenerator);
+                    factory = newGenerator as IFactory;
                 }
+
+                var needMemberInfo = factory as INeedMemberInfo;
+                if(needMemberInfo != null)
+                {
+                    needMemberInfo.MemberInfo = memberInfo;
+                }
+
+                memberGenerators.Add(memberInfo, factory);
             }
         }
 

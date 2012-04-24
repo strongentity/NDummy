@@ -8,17 +8,17 @@
 
     public class GeneratorSettings : Settings, IGeneratorSettings
     {
-        private readonly IDictionary<MemberInfo, object> memberFactories;
+        private readonly IDictionary<MemberInfo, IFactory> memberFactories;
 
         private readonly IList<object> customActions;
 
         public GeneratorSettings()
         {
-            memberFactories = new Dictionary<MemberInfo, object>();
+            memberFactories = new Dictionary<MemberInfo, IFactory>();
             customActions = new List<object>(); 
         }
 
-        public void SetMemberFactory(MemberInfo memberInfo, object factory)
+        public void SetMemberFactory(MemberInfo memberInfo, IFactory factory)
         {
             if (memberFactories.ContainsKey(memberInfo))
                 memberFactories[memberInfo] = factory;
@@ -26,7 +26,7 @@
                 memberFactories.Add(memberInfo, factory);
         }
 
-        public IDictionary<MemberInfo, object> MemberFactories
+        public IDictionary<MemberInfo, IFactory> MemberFactories
         {
             get
             {

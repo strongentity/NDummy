@@ -18,7 +18,7 @@
         public void CanAddMemberFactory()
         {
             var memberInfo = It.IsAny<MemberInfo>();
-            var factory = new object();
+            var factory = It.IsAny<IFactory>();
             var mock = new Mock<IGeneratorSettings>();
             var spec = new MemberFactorySpec(memberInfo,factory);
             spec.Apply(mock.Object);

@@ -31,6 +31,7 @@
         {
             for(int i=0; i< numberOfItems; i++)
                 list.Add(factory.Generate());
+
             return list;
         }
 

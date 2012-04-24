@@ -83,6 +83,14 @@
         }
 
         /// <summary>
+        /// Gets the lazily initialized factories.
+        /// </summary>
+        public IDictionary<Type, Func<IFactory>> LazyFactories
+        {
+            get { return lazyFactories; }
+        }
+
+        /// <summary>
         /// Gets or sets the max depth.
         /// </summary>
         /// <value>
@@ -94,5 +102,6 @@
         /// Gets the collection generator.
         /// </summary>
         public ICollectionGenerator CollectionGenerator { get; private set; }
+     
     }
 }

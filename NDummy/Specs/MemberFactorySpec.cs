@@ -10,9 +10,9 @@
     {
         private readonly MemberInfo memberInfo;
 
-        private readonly object factory;
+        private readonly IFactory factory;
 
-        public MemberFactorySpec(MemberInfo memberInfo, object factory)
+        public MemberFactorySpec(MemberInfo memberInfo, IFactory factory)
         {
             this.memberInfo = memberInfo;
             this.factory = factory;

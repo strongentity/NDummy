@@ -42,6 +42,12 @@
         /// </summary>
         IDictionary<Type, IFactory> Factories { get; }
 
+
+        /// <summary>
+        /// Gets the lazily initialized factories.
+        /// </summary>
+        IDictionary<Type, Func<IFactory>> LazyFactories { get; } 
+
         /// <summary>
         /// Gets or sets the max depth.
         /// </summary>
@@ -66,12 +72,12 @@
         /// </summary>
         /// <param name="memberInfo">The member info.</param>
         /// <param name="factory">The factory.</param>
-        void SetMemberFactory(MemberInfo memberInfo, object factory);
+        void SetMemberFactory(MemberInfo memberInfo, IFactory factory);
 
         /// <summary>
         /// Gets the member factories.
         /// </summary>
-        IDictionary<MemberInfo, object> MemberFactories { get; }
+        IDictionary<MemberInfo, IFactory> MemberFactories { get; }
 
         /// <summary>
         /// Sets the custom action.
