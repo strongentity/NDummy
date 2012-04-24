@@ -12,7 +12,6 @@ namespace NDummy.Tests.Factories.SequenceFactories
         private SequenceFactory<T> _factory;
 
         protected abstract SequenceFactory<T> GetFactory(SequenceFactorySettings<T> settings);
-        
        
         protected void IsSequence(T minValue, T maxValue, T step)
         {
