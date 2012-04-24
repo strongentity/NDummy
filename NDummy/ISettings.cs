@@ -5,7 +5,7 @@
     using System.Reflection;
 
     /// <summary>
-    /// Provides way to get and set settings
+    /// Provides a set of ways to get and set settings
     /// </summary>
     public interface ISettings
     {
@@ -24,16 +24,23 @@
         void SetFactory<T>(IFactory<T> factory);
 
         /// <summary>
+        /// Sets the lazily evaluated factory.
+        /// </summary>
+        /// <typeparam name="T">Type to generate</typeparam>
+        /// <param name="factory">The factory.</param>
+        void SetFactory<T>(Func<IFactory<T>> factory);
+
+        /// <summary>
         /// Sets the factory for target type.
         /// </summary>
         /// <param name="targetType">Type of the target.</param>
         /// <param name="factory">The factory.</param>
-        void SetFactory(Type targetType, object factory);
+        void SetFactory(Type targetType, IFactory factory);
 
         /// <summary>
         /// Gets the factories.
         /// </summary>
-        IDictionary<Type, object> Factories { get; }
+        IDictionary<Type, IFactory> Factories { get; }
 
         /// <summary>
         /// Gets or sets the max depth.
@@ -42,6 +49,11 @@
         /// The max depth.
         /// </value>
         int MaxDepth { get; set; }
+
+        /// <summary>
+        /// Gets the collection generator.
+        /// </summary>
+        ICollectionGenerator CollectionGenerator {get;}
     }
 
     /// <summary>

@@ -148,22 +148,16 @@
                                       ? (memberInfo as PropertyInfo).PropertyType
                                       : (memberInfo as FieldInfo).FieldType;
 
-                //if(memberType.IsAssignableFrom(enumerableType))
-                //{
-                //    if(memberType.IsGenericType)
-                //    {
-                //        memberType.G
-                //    }
-                //    else
-                //    {
-                        
-                //    }
-                //}
+                if(memberType.IsCollectionType())
+                {
+                    var collectionFactory = generalSettings.CollectionGenerator.Generate(memberType);
+                    memberGenerators.Add(memberInfo, collectionFactory);
+                }
 
                 if(generatorSettings.MemberFactories.ContainsKey(memberInfo))
                 {
                     memberGenerators.Add(memberInfo, generatorSettings.MemberFactories[memberInfo]);
-                }
+                }`
                 else if(generatorSettings.Factories.ContainsKey(memberType))
                 {
                     memberGenerators.Add(memberInfo, generatorSettings.Factories[memberType]);

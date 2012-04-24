@@ -25,6 +25,5 @@
             return args => new CustomClass();
         }
 
-
     }
 }
