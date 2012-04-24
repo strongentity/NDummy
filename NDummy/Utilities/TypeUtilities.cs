@@ -58,7 +58,7 @@
             if (type.IsArray) 
                 return true;
 
-            if (type.IsAssignableFrom(typeof(IEnumerable))) 
+            if (typeof(IEnumerable).IsAssignableFrom(type)) 
                 return true;
 
             return false;

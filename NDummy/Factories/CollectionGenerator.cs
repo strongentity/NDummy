@@ -57,36 +57,36 @@
                 {
                     return creators[typeDefinition].Invoke(genericArgs, settings);
                 }
-                if(typeDefinition.IsAssignableFrom(typeof(IList<>)))
+                if (typeof(IList<>).IsAssignableFrom(typeDefinition))
                 {
                     return this.creators[typeof(IList<>)].Invoke(genericArgs, this.settings);
                 }
-                if(typeDefinition.IsAssignableFrom(typeof(IDictionary<,>)))
+                if (typeof(IDictionary<,>).IsAssignableFrom(typeDefinition))
                 {
                     return this.creators[typeof(IDictionary<,>)].Invoke(genericArgs, this.settings);
                 }
-                if(typeDefinition.IsAssignableFrom(typeof(ICollection<>)))
+                if (typeof(ICollection<>).IsAssignableFrom(typeDefinition))
                 {
                     return this.creators[typeof(ICollection<>)].Invoke(genericArgs, this.settings);
                 }
-                if(typeDefinition.IsAssignableFrom(typeof(IEnumerable<>)))
+                if (typeof(IEnumerable<>).IsAssignableFrom(typeDefinition))
                 {
                     return this.creators[typeof(IEnumerable<>)].Invoke(genericArgs, this.settings);
                 }
             }
-            if(collectionType.IsAssignableFrom(typeof(IList)))
+            if (typeof(IList).IsAssignableFrom(collectionType))
             {
                 return creators[typeof(IList)].Invoke(null, settings);
             }
-            else if(collectionType.IsAssignableFrom(typeof(IDictionary)))
+            else if (typeof(IDictionary).IsAssignableFrom(collectionType))
             {
                 return creators[typeof(IDictionary)].Invoke(null, settings);
             }
-            else if(collectionType.IsAssignableFrom(typeof(ICollection)))
+            else if (typeof(ICollection).IsAssignableFrom(collectionType))
             {
                 return creators[typeof(ICollection)].Invoke(null, settings);
             }
-            else if(collectionType.IsAssignableFrom(typeof(IEnumerable)))
+            else if(typeof(IEnumerable).IsAssignableFrom(collectionType))
             {
                 return creators[typeof(IEnumerable)].Invoke(null, settings);
             }
