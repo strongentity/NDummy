@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="DefaultSettings.cs" />
     <Compile Include="Dummy.cs" />
+    <Compile Include="Factories\ArrayFactory.cs" />
     <Compile Include="Factories\BooleanFactory.cs" />
     <Compile Include="Factories\CollectionGenerator.cs" />
     <Compile Include="Factories\DictionaryFactory.cs" />
@@ -51,10 +52,13 @@
     <Compile Include="Factories\ListFactory.cs" />
     <Compile Include="Factories\RandomFactory.cs" />
     <Compile Include="Factories\SequenceFactory.cs" />
+    <Compile Include="Factories\SetFactory.cs" />
+    <Compile Include="Factories\UniqueFactory.cs" />
     <Compile Include="Factories\StringFactory.cs" />
     <Compile Include="GeneratorExtensions.cs" />
     <Compile Include="GeneratorPredicate.cs" />
     <Compile Include="GeneratorSettings.cs" />
+    <Compile Include="IArrayFactory.cs" />
     <Compile Include="ICollectionGenerator.cs" />
     <Compile Include="IListFactory.cs" />
     <Compile Include="IFactory.cs" />

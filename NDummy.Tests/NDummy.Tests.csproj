@@ -83,6 +83,8 @@
     <Compile Include="Factories\SequenceFactories\Int64SequenceFactoryTest.cs" />
     <Compile Include="Factories\SequenceFactories\SequenceFactoryTestBase.cs" />
     <Compile Include="Factories\SequenceFactories\UInt32SequenceFactoryTest.cs" />
+    <Compile Include="Factories\UniqueFactories\Int32UniqueFactoryTest.cs" />
+    <Compile Include="Factories\UniqueFactories\UniqueFactoryTestBase.cs" />
     <Compile Include="Factories\StringFactoryTest.cs" />
     <Compile Include="Generators\CustomAbstractClassGeneratorTest.cs" />
     <Compile Include="Generators\CustomAbstractClassImplGeneratorTest.cs" />
