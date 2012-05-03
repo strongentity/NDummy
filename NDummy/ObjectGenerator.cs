@@ -149,12 +149,11 @@
                                       : (memberInfo as FieldInfo).FieldType;
 
                 IFactory factory = null;
-
-                if(memberType.IsCollectionType())
+                if (memberType.IsCollectionType() && memberType != typeof(string))
                 {
                     factory = generalSettings.CollectionGenerator.Generate(memberType);
                 }
-                else if(generatorSettings.MemberFactories.ContainsKey(memberInfo))
+                if(generatorSettings.MemberFactories.ContainsKey(memberInfo))
                 {
                     factory = generatorSettings.MemberFactories[memberInfo];
                 }

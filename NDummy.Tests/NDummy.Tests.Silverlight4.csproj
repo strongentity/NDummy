@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8F178D81-4E03-4579-B406-72189785E2D4}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NDummy.Tests.Silverlight4</RootNamespace>
+    <AssemblyName>NDummy.Tests.Silverlight4</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Moq.4.0.10827\lib\Silverlight4\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq.Silverlight">
+      <HintPath>..\packages\Moq.4.0.10827\lib\Silverlight4\Moq.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Browser" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomTypes\CustomAbstractClass.cs" />
+    <Compile Include="CustomTypes\CustomClass.cs" />
+    <Compile Include="CustomTypes\CustomDerivedClass.cs" />
+    <Compile Include="CustomTypes\CustomEnum.cs" />
+    <Compile Include="CustomTypes\CustomStruct.cs" />
+    <Compile Include="CustomTypes\ICustomInterface.cs" />
+    <Compile Include="Factories\BooleanFactoryTest.cs" />
+    <Compile Include="Factories\CollectionFactories\DictionaryFactoryTest.cs" />
+    <Compile Include="Factories\CollectionFactories\ListFactoryTest.cs" />
+    <Compile Include="Factories\GuidFactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomBooleanFactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomByteFactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomDecimalFactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomDoubleFactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomFactoryTestBase.cs" />
+    <Compile Include="Factories\RandomFactories\RandomInt16FactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomInt32FactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomInt64FactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomSByteFactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomSingleFactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomUInt16FactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomUInt32FactoryTest.cs" />
+    <Compile Include="Factories\RandomFactories\RandomUInt64FactoryTest.cs" />
+    <Compile Include="Factories\SequenceFactories\BoolSequenceFactoryTest.cs" />
+    <Compile Include="Factories\SequenceFactories\ByteSequenceFactoryTest.cs" />
+    <Compile Include="Factories\SequenceFactories\CharSequenceFactoryTest.cs" />
+    <Compile Include="Factories\SequenceFactories\DecimalSequenceFactoryTest.cs" />
+    <Compile Include="Factories\SequenceFactories\DoubleSequenceFactoryTest.cs" />
+    <Compile Include="Factories\SequenceFactories\FloatSequenceFactoryTest.cs" />
+    <Compile Include="Factories\SequenceFactories\Int16SequenceFactoryTest.cs" />
+    <Compile Include="Factories\SequenceFactories\Int32SequenceFactoryTest.cs" />
+    <Compile Include="Factories\SequenceFactories\Int64SequenceFactoryTest.cs" />
+    <Compile Include="Factories\SequenceFactories\SequenceFactoryTestBase.cs" />
+    <Compile Include="Factories\SequenceFactories\UInt32SequenceFactoryTest.cs" />
+    <Compile Include="Factories\StringFactoryTest.cs" />
+    <Compile Include="Factories\UniqueFactories\Int32UniqueFactoryTest.cs" />
+    <Compile Include="Factories\UniqueFactories\UniqueFactoryTestBase.cs" />
+    <Compile Include="Generators\CustomAbstractClassGeneratorTest.cs" />
+    <Compile Include="Generators\CustomAbstractClassImplGeneratorTest.cs" />
+    <Compile Include="Generators\CustomClassGeneratorTest.cs" />
+    <Compile Include="Generators\CustomDerivedClassGeneratorTest.cs" />
+    <Compile Include="Generators\ObjectGeneratorTestBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Specs\CustomActionSpecTest.cs" />
+    <Compile Include="Specs\MaxDepthSpecTest.cs" />
+    <Compile Include="Specs\MemberFactorySpecTest.cs" />
+    <Compile Include="Specs\SpecTest.cs" />
+    <Compile Include="Specs\TypeFactorySpecTest.cs" />
+    <Compile Include="Utilities\CommonExtensions.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

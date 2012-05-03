@@ -5,6 +5,7 @@ using System.Text;
 
 namespace NDummy.Factories
 {
+
     public class SetFactory<T>: IFactory<ISet<T>> where T : struct, IComparable
     {
         private readonly ISet<T> set;

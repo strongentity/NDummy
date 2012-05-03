@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1F69016E-A3EC-4859-A5CD-E1B9A99262C6}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NDummy.Silverlight4</RootNamespace>
+    <AssemblyName>NDummy.Silverlight4</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Browser" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DefaultSettings.cs" />
+    <Compile Include="Dummy.cs" />
+    <Compile Include="Factories\ArrayFactory.cs" />
+    <Compile Include="Factories\BooleanFactory.cs" />
+    <Compile Include="Factories\CollectionGenerator.cs" />
+    <Compile Include="Factories\DictionaryFactory.cs" />
+    <Compile Include="Factories\FuncAdapter.cs" />
+    <Compile Include="Factories\GuidFactory.cs" />
+    <Compile Include="Factories\ListFactory.cs" />
+    <Compile Include="Factories\RandomFactory.cs" />
+    <Compile Include="Factories\SequenceFactory.cs" />
+    <Compile Include="Factories\SetFactory.cs" />
+    <Compile Include="Factories\StringFactory.cs" />
+    <Compile Include="Factories\UniqueFactory.cs" />
+    <Compile Include="GeneratorExtensions.cs" />
+    <Compile Include="GeneratorPredicate.cs" />
+    <Compile Include="GeneratorSettings.cs" />
+    <Compile Include="IArrayFactory.cs" />
+    <Compile Include="ICollectionGenerator.cs" />
+    <Compile Include="IFactory.cs" />
+    <Compile Include="IGenerator.cs" />
+    <Compile Include="IGeneratorPredicate.cs" />
+    <Compile Include="IGeneratorSpec.cs" />
+    <Compile Include="IListFactory.cs" />
+    <Compile Include="INeedMemberInfo.cs" />
+    <Compile Include="ISettings.cs" />
+    <Compile Include="ObjectGenerator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Spec.cs" />
+    <Compile Include="Specs\CustomActionSpec.cs" />
+    <Compile Include="Specs\MaxDepthSpec.cs" />
+    <Compile Include="Specs\MemberFactorySpec.cs" />
+    <Compile Include="Specs\OverrideChildGeneratorSpec.cs" />
+    <Compile Include="Specs\TypeFactorySpec.cs" />
+    <Compile Include="Utilities\TypeUtilities.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

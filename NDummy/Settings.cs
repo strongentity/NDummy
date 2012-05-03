@@ -71,7 +71,12 @@
         /// <param name="factory">The factory.</param>
         public void SetFactory<T>(Func<IFactory<T>> factory)
         {
+#if NET40
             lazyFactories.Add(typeof(T), factory);
+#else
+            lazyFactories.Add(typeof(T),()=> factory());
+#endif
+
         }
 
         /// <summary>

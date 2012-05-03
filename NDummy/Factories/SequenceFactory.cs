@@ -1,8 +1,12 @@
 ﻿namespace NDummy.Factories
 {
     using System;
+
+#if NET40
+
     using System.Numerics;
 
+#endif
     /*
      * 
      * int+, short+, byte+, bool, long+, uint++, ushort++, sbyte+, ulong++, float+, double+, decimal+, BigInteger+
@@ -1137,6 +1141,8 @@
 
     }
 
+#if NET40
+
     public class BigIntSequenceFactory : SequenceFactory<BigInteger>
     {
         //private int _currentValue;
@@ -1234,6 +1240,8 @@
             return _currentValue;
         }
     }
+
+#endif
 
     public class BoolSequenceFactory : SequenceFactory<bool>
     {
@@ -1413,5 +1421,6 @@
         }
 
     }
+
 
 }

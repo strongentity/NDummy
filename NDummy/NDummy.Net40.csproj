@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A3742B57-2219-42C7-A184-AEB1C22E3BD5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NDummy</RootNamespace>
+    <AssemblyName>NDummy</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET40</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DefaultSettings.cs" />
+    <Compile Include="Dummy.cs" />
+    <Compile Include="Factories\ArrayFactory.cs" />
+    <Compile Include="Factories\BooleanFactory.cs" />
+    <Compile Include="Factories\CollectionGenerator.cs" />
+    <Compile Include="Factories\DictionaryFactory.cs" />
+    <Compile Include="Factories\FuncAdapter.cs" />
+    <Compile Include="Factories\GuidFactory.cs" />
+    <Compile Include="Factories\ListFactory.cs" />
+    <Compile Include="Factories\RandomFactory.cs" />
+    <Compile Include="Factories\SequenceFactory.cs" />
+    <Compile Include="Factories\SetFactory.cs" />
+    <Compile Include="Factories\UniqueFactory.cs" />
+    <Compile Include="Factories\StringFactory.cs" />
+    <Compile Include="GeneratorExtensions.cs" />
+    <Compile Include="GeneratorPredicate.cs" />
+    <Compile Include="GeneratorSettings.cs" />
+    <Compile Include="IArrayFactory.cs" />
+    <Compile Include="ICollectionGenerator.cs" />
+    <Compile Include="IListFactory.cs" />
+    <Compile Include="IFactory.cs" />
+    <Compile Include="IGenerator.cs" />
+    <Compile Include="IGeneratorPredicate.cs" />
+    <Compile Include="INeedMemberInfo.cs" />
+    <Compile Include="ISettings.cs" />
+    <Compile Include="IGeneratorSpec.cs" />
+    <Compile Include="ObjectGenerator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Spec.cs" />
+    <Compile Include="Specs\CustomActionSpec.cs" />
+    <Compile Include="Specs\MaxDepthSpec.cs" />
+    <Compile Include="Specs\MemberFactorySpec.cs" />
+    <Compile Include="Specs\OverrideChildGeneratorSpec.cs" />
+    <Compile Include="Specs\TypeFactorySpec.cs" />
+    <Compile Include="Utilities\TypeUtilities.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

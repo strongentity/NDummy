@@ -10,7 +10,7 @@ namespace NDummy.Tests.Factories.UniqueFactories
     public class Int32UniqueFactoryTest : UniqueFactoryTestBase<int>
     {
 
-      protected override UniqueFactory<int> GetFactory(UniqueFactorySettings<int> settings)
+        protected override UniqueFactory<int> GetFactory(UniqueFactorySettings<int> settings)
         {
            return settings != null ? new Int32UniqueFactory(settings) : new Int32UniqueFactory();
            // return null;
