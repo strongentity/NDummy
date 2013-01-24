@@ -58,6 +58,7 @@
     <Compile Include="Factories\BooleanFactoryTest.cs" />
     <Compile Include="Factories\CollectionFactories\DictionaryFactoryTest.cs" />
     <Compile Include="Factories\CollectionFactories\ListFactoryTest.cs" />
+    <Compile Include="Factories\EnumFactoryTest.cs" />
     <Compile Include="Factories\GuidFactoryTest.cs" />
     <Compile Include="Factories\RandomFactories\RandomBooleanFactoryTest.cs" />
     <Compile Include="Factories\RandomFactories\RandomByteFactoryTest.cs" />
