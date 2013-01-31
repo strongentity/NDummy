@@ -7,12 +7,13 @@
     using System.Numerics;
 
 #endif
-    /*
-     * 
-     * int+, short+, byte+, bool, long+, uint++, ushort++, sbyte+, ulong++, float+, double+, decimal+, BigInteger+
-     */
-    public abstract class SequenceFactory<T> : IFactory<T> where T:struct, IComparable
-    {   
+    
+    /// <summary>
+    /// Acts as base class for sequence factory
+    /// </summary>
+    /// <typeparam name="T">data type</typeparam>
+    public abstract class SequenceFactory<T> : IFactory<T> where T : struct, IComparable
+    {
         protected SequenceFactory(SequenceFactorySettings<T> settings)
         {
             if (settings != null)
@@ -30,76 +31,92 @@
         /// </summary>
         /// <returns> a T of course</returns>
         public abstract T Generate();
-       
+
         /// <summary>
         /// gets minimum sequence value
         /// </summary>
-        public T MinValue { get; private set; }
+        public T MinValue { get; protected set; }
 
         /// <summary>
         /// gets maximux sequence value
         /// </summary>
-        public T MaxValue { get; private set; }
+        public T MaxValue { get; protected set; }
 
         /// <summary>
-        /// get step  
+        /// gets step value  
         /// </summary>
-        public T Step { get; private set; }
+        public T Step { get; protected set; }
 
         /// <summary>
-        /// 
+        /// gets or sets current value
         /// </summary>
         protected T CurrentValue { get; set; }
 
         /// <summary>
-        /// 
+        /// checks whether current value is the first value
         /// </summary>
         protected bool IsFirstValue { get; set; }
 
+        /// <summary>
+        /// Generates value
+        /// </summary>
+        /// <returns>new generated value</returns>
         object IFactory.Generate()
         {
             return this.Generate();
         }
     }
 
+    /// <summary>
+    /// Encapsulates sequence generator options
+    /// </summary>
+    /// <typeparam name="T">Type of object to generate</typeparam>
     public class SequenceFactorySettings<T>
     {
+        /// <summary>
+        /// Minimum generated value allowed
+        /// </summary>
         public T MinValue { get; set; }
 
+        /// <summary>
+        /// Maximum generated value allowed
+        /// </summary>
         public T MaxValue { get; set; }
 
+        /// <summary>
+        /// Step between each generated value
+        /// </summary>
         public T Step { get; set; }
 
     }
 
     public class Int32SequenceFactory : SequenceFactory<int>
     {
-        //private int _currentValue;
-      
 
         /// <summary>
         /// 
         /// </summary>
-        public Int32SequenceFactory() : 
-           base( new SequenceFactorySettings<int>()
+        public Int32SequenceFactory() :
+            base(new SequenceFactorySettings<int>()
             {
                 MaxValue = Int32.MaxValue,
                 MinValue = 1,
                 Step = 1
             })
-         {
+        {
 
-         }
+        }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="settings"></param>
-        public Int32SequenceFactory(SequenceFactorySettings<int> settings):base(settings)
+        public Int32SequenceFactory(SequenceFactorySettings<int> settings)
+            : base(settings)
         {
             if (settings.Step == 0)
             {
-                throw new System.ArgumentException("Step can not be zero","settings");
+                throw new System.ArgumentException("Step can not be zero", "settings");
             }
             if (settings.MaxValue <= settings.MinValue)
             {
@@ -118,16 +135,19 @@
         public override int Generate()
         {
             int _currentValue = MinValue;
-            if(IsFirstValue)
+
+            if (IsFirstValue)
             {
                 IsFirstValue = false;
             }
             else
             {
-            
-                if(_currentValue != CurrentValue)
+
+                if (_currentValue != CurrentValue)
                     _currentValue = CurrentValue;
+
                 int newValue = 0;
+
                 if (Step > 0)
                 {
                     try
@@ -157,20 +177,20 @@
                             newValue = _currentValue + Step;
                             while (newValue < MinValue)
                             {
-                               var diff = Math.Abs(newValue-MinValue) - 1;
-                                newValue = MaxValue-diff;
+                                var diff = Math.Abs(newValue - MinValue) - 1;
+                                newValue = MaxValue - diff;
                             }
                         }
                     }
                     catch
                     {
-                        var rangeBetweenCyclic =  MinValue - _currentValue + 1;
+                        var rangeBetweenCyclic = MinValue - _currentValue + 1;
                         newValue = MaxValue + Step + rangeBetweenCyclic;
                     }
                 }
                 _currentValue = newValue;
                 CurrentValue = _currentValue;
-              }
+            }
             return _currentValue;
         }
 
@@ -187,7 +207,7 @@
             {
                 MaxValue = short.MaxValue,
                 MinValue = 1,
-                Step=1
+                Step = 1
             })
         {
 
@@ -221,7 +241,7 @@
             else
             {
                 if (_currentValue != CurrentValue)
-                _currentValue = CurrentValue;
+                    _currentValue = CurrentValue;
                 short newValue = 0;
 
                 if (Step > 0)
@@ -230,18 +250,18 @@
                     {
                         checked
                         {
-                            newValue = (short) (_currentValue + Step);
+                            newValue = (short)(_currentValue + Step);
                             while (newValue > MaxValue)
                             {
                                 var diff = newValue - MaxValue - 1;
-                                newValue = (short) (MinValue + diff);
+                                newValue = (short)(MinValue + diff);
                             }
                         }
                     }
                     catch
                     {
                         var rangeBetweenCyclic = MaxValue - _currentValue + 1;
-                        newValue = (short) (MinValue + Step - rangeBetweenCyclic);
+                        newValue = (short)(MinValue + Step - rangeBetweenCyclic);
                     }
                 }
                 else if (Step < 0)
@@ -250,18 +270,18 @@
                     {
                         checked
                         {
-                            newValue = (short) (_currentValue + Step);
+                            newValue = (short)(_currentValue + Step);
                             while (newValue < MinValue)
                             {
                                 var diff = Math.Abs(newValue - MinValue) - 1;
-                                newValue = (short) (MaxValue - diff);
+                                newValue = (short)(MaxValue - diff);
                             }
                         }
                     }
                     catch
                     {
                         var rangeBetweenCyclic = MinValue - _currentValue + 1;
-                        newValue = (short) (MaxValue + Step + rangeBetweenCyclic);
+                        newValue = (short)(MaxValue + Step + rangeBetweenCyclic);
                     }
                 }
                 _currentValue = newValue;
@@ -420,18 +440,18 @@
                     {
                         checked
                         {
-                            newValue = (byte) (_currentValue + Step);
+                            newValue = (byte)(_currentValue + Step);
                             while (newValue > MaxValue)
                             {
                                 var diff = newValue - MaxValue - 1;
-                                newValue = (byte) (MinValue + diff);
+                                newValue = (byte)(MinValue + diff);
                             }
                         }
                     }
                     catch
                     {
                         var rangeBetweenCyclic = MaxValue - _currentValue + 1;
-                        newValue = (byte) (MinValue + Step - rangeBetweenCyclic);
+                        newValue = (byte)(MinValue + Step - rangeBetweenCyclic);
                     }
 
 
@@ -442,18 +462,18 @@
                     {
                         checked
                         {
-                            newValue = (byte) (_currentValue + Step);
+                            newValue = (byte)(_currentValue + Step);
                             while (newValue < MinValue)
                             {
                                 var diff = Math.Abs(newValue - MinValue) - 1;
-                                newValue = (byte) (MaxValue - diff);
+                                newValue = (byte)(MaxValue - diff);
                             }
                         }
                     }
                     catch
                     {
                         var rangeBetweenCyclic = MinValue - _currentValue + 1;
-                        newValue = (byte) (MaxValue + Step + rangeBetweenCyclic);
+                        newValue = (byte)(MaxValue + Step + rangeBetweenCyclic);
                     }
                 }
                 _currentValue = newValue;
@@ -466,105 +486,111 @@
 
     public class DoubleSequenceFactory : SequenceFactory<double>
     {
+        private double circularStep;
+
         /// <summary>
         /// 
         /// </summary>
-         public DoubleSequenceFactory() : 
-           base( new SequenceFactorySettings<double>()
-            {
-                MaxValue = double.MaxValue,
-                MinValue = 1,
-                Step = 1    
-            })
-         {
+        public DoubleSequenceFactory() :
+            base(new SequenceFactorySettings<double>()
+           {
+               MaxValue = double.MaxValue,
+               MinValue = 1,
+               Step = 1
+           })
+        {
 
-         }
+        }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="settings"></param>
-         public DoubleSequenceFactory(SequenceFactorySettings<double> settings):base(settings)
+        public DoubleSequenceFactory(SequenceFactorySettings<double> settings)
+            : base(settings)
         {
             if (settings.Step == 0)
             {
-                throw new System.ArgumentException("Step can not be zero","settings");
+                throw new System.ArgumentException("Step can not be zero", "settings");
             }
             if (settings.MaxValue <= settings.MinValue)
             {
                 throw new System.ArgumentException("Max value should be greater than Min value", "settings");
             }
+
+            Step = Step % (MaxValue - MinValue);
+
+            SetCircularStep();
+
         }
 
-         public override double Generate()
-         {
-             double _currentValue = MinValue;
-             if (IsFirstValue)
-             {
-                 IsFirstValue = false;
-             }
-             else
-             {
+        void SetCircularStep()
+        {
+            var absStep = Math.Abs(Step);
+            if (absStep >= 1)
+            {
+                circularStep = 1;
+            }
+            else
+            {
+                circularStep = Math.Pow(10, Math.Floor(Math.Log(absStep, 10)));
+            }
+        }
 
-                 if (_currentValue != CurrentValue)
-                 _currentValue = CurrentValue;
-                 double newValue = 0;
+        public override double Generate()
+        {
+            double _currentValue = MinValue;
+            if (IsFirstValue)
+            {
+                IsFirstValue = false;
+            }
+            else
+            {
 
-                 if (Step > 0)
-                 {
-                     try
-                     {
-                         checked
-                         {
-                             newValue = _currentValue + Step;
-                             while (newValue > MaxValue)
-                             {
-                                 var diff = newValue - MaxValue - 1;
-                                 newValue = MinValue + diff;
-                             }
-                         }
-                     }
-                     catch
-                     {
-                         var rangeBetweenCyclic = MaxValue - _currentValue + 1;
-                         newValue = MinValue + Step - rangeBetweenCyclic;
-                     }
+                if (_currentValue != CurrentValue)
+                    _currentValue = CurrentValue;
+                double newValue = 0;
 
-                 }
-                 else if (Step < 0)
-                 {
-                     try
-                     {
-                         checked
-                         {
-                             newValue = _currentValue + Step;
-                             while (newValue < MinValue)
-                             {
-                                 var diff = Math.Abs(newValue - MinValue) - 1;
-                                 newValue = MaxValue - diff;
-                             }
-                         }
-                     }
-                     catch
-                     {
-                         var rangeBetweenCyclic = MinValue - _currentValue + 1;
-                         newValue = MaxValue + Step + rangeBetweenCyclic;
-                     }
-                 }
-                 _currentValue = newValue;
-                 CurrentValue = _currentValue;
-             }
-             return _currentValue;
-         }
-    
+                if (Step > 0)
+                {
+
+                    newValue = _currentValue + Step;
+                    while (newValue > MaxValue)
+                    {
+                        var diff = newValue - MaxValue - circularStep;
+                        newValue = MinValue + diff;
+                    }
+
+                }
+                else if (Step < 0)
+                {
+                    newValue = _currentValue + Step;
+                    while (newValue < MinValue)
+                    {
+                        var diff = Math.Abs(newValue - MinValue) - circularStep;
+                        newValue = MaxValue - diff;
+                    }
+                }
+
+                _currentValue = newValue;
+                CurrentValue = _currentValue;
+            }
+            return _currentValue;
+        }
+
     }
 
-    public class FloatSequenceFactory : SequenceFactory<float>
+    /// <summary>
+    /// Sequential factory for Single data type
+    /// </summary>
+    public class SingleSequenceFactory : SequenceFactory<float>
     {
+        private float circularStep;
+
         /// <summary>
         /// 
         /// </summary>
-        public FloatSequenceFactory() :
+        public SingleSequenceFactory() :
             base(new SequenceFactorySettings<float>()
             {
                 MaxValue = float.MaxValue,
@@ -579,7 +605,7 @@
         /// 
         /// </summary>
         /// <param name="settings"></param>
-        public FloatSequenceFactory(SequenceFactorySettings<float> settings)
+        public SingleSequenceFactory(SequenceFactorySettings<float> settings)
             : base(settings)
         {
             if (settings.Step == 0)
@@ -590,62 +616,58 @@
             {
                 throw new System.ArgumentException("Max value should be greater than Min value", "settings");
             }
+
+            Step = Step % (MaxValue - MinValue);
+
+            SetCircularStep();
+        }
+
+        void SetCircularStep()
+        {
+            var absStep = Math.Abs(Step);
+
+            if (absStep >= 1)
+            {
+                circularStep = 1;
+            }
+            else
+            {
+                circularStep = (float)Math.Pow(10, Math.Floor(Math.Log(absStep, 10)));
+            }
         }
 
         public override float Generate()
         {
             float _currentValue = MinValue;
+
             if (IsFirstValue)
             {
                 IsFirstValue = false;
             }
             else
             {
-
                 if (_currentValue != CurrentValue)
                     _currentValue = CurrentValue;
+
                 float newValue = 0;
 
                 if (Step > 0)
                 {
-                    try
+                    newValue = _currentValue + Step;
+                    while (newValue > MaxValue)
                     {
-                        checked
-                        {
-                            newValue = _currentValue + Step;
-                            while (newValue > MaxValue)
-                            {
-                                var diff = newValue - MaxValue - 1;
-                                newValue = MinValue + diff;
-                            }
-                        }
-                    }
-                    catch
-                    {
-                        var rangeBetweenCyclic = MaxValue - _currentValue + 1;
-                        newValue = MinValue + Step - rangeBetweenCyclic;
+                        var diff = newValue - MaxValue - circularStep;
+                        newValue = MinValue + diff;
                     }
                 }
                 else if (Step < 0)
                 {
-                    try
+                    newValue = _currentValue + Step;
+                    while (newValue < MinValue)
                     {
-                        checked
-                        {
-                            newValue = _currentValue + Step;
-                            while (newValue < MinValue)
-                            {
-                                var diff = Math.Abs(newValue - MinValue) - 1;
-                                newValue = MaxValue - diff;
-                            }
-                        }
+                        var diff = Math.Abs(newValue - MinValue) - circularStep;
+                        newValue = MaxValue - diff;
                     }
-                    catch
-                    {
-                        var rangeBetweenCyclic = MinValue - _currentValue + 1;
-                        newValue = MaxValue + Step + rangeBetweenCyclic;
-                    }
-
                 }
                 _currentValue = newValue;
                 CurrentValue = _currentValue;
@@ -657,18 +679,18 @@
 
     public class DecimalSequenceFactory : SequenceFactory<decimal>
     {
+        private decimal circularStep;
 
         /// <summary>
         /// 
         /// </summary>
         public DecimalSequenceFactory() :
-        base(new SequenceFactorySettings<decimal>()
+            base(new SequenceFactorySettings<decimal>()
                 {
-                     MaxValue = decimal.MaxValue,
-                MinValue = 1,
-                Step = 1
+                    MaxValue = decimal.MaxValue,
+                    MinValue = 1,
+                    Step = 1
                 })
-
         {
         }
 
@@ -676,7 +698,8 @@
         /// 
         /// </summary>
         /// <param name="settings"></param>
-        public DecimalSequenceFactory(SequenceFactorySettings<decimal> settings):base(settings)
+        public DecimalSequenceFactory(SequenceFactorySettings<decimal> settings)
+            : base(settings)
         {
             if (settings.Step == 0)
             {
@@ -686,6 +709,34 @@
             if (settings.MaxValue <= settings.MinValue)
             {
                 throw new System.ArgumentException("Max value should be greater than Min value", "settings");
+            }
+
+            try
+            {
+                checked
+                {
+                    Step = Step%(settings.MaxValue - settings.MinValue);
+                }
+            }
+            catch
+            {
+                
+            }
+
+            SetCircularStep();
+        }
+
+        void SetCircularStep()
+        {
+            var absStep = Math.Abs(Step);
+
+            if (absStep >= 1)
+            {
+                circularStep = 1;
+            }
+            else
+            {
+                circularStep = (decimal)Math.Pow(10, Math.Floor(Math.Log(Convert.ToDouble(absStep), 10)));
             }
         }
 
@@ -712,14 +763,14 @@
                             newValue = _currentValue + Step;
                             while (newValue > MaxValue)
                             {
-                                var diff = newValue - MaxValue - 1;
+                                var diff = newValue - MaxValue - circularStep;
                                 newValue = MinValue + diff;
                             }
                         }
                     }
                     catch
                     {
-                        var rangeBetweenCyclic = MaxValue - _currentValue + 1;
+                        var rangeBetweenCyclic = MaxValue - _currentValue + circularStep;
                         newValue = MinValue + Step - rangeBetweenCyclic;
                     }
                 }
@@ -732,14 +783,14 @@
                             newValue = _currentValue + Step;
                             while (newValue < MinValue)
                             {
-                                var diff = Math.Abs(newValue - MinValue) - 1;
+                                var diff = Math.Abs(newValue - MinValue) - circularStep;
                                 newValue = MaxValue - diff;
                             }
                         }
                     }
                     catch
                     {
-                        var rangeBetweenCyclic = MinValue - _currentValue + 1;
+                        var rangeBetweenCyclic = MinValue - _currentValue + circularStep;
                         newValue = MaxValue + Step + rangeBetweenCyclic;
                     }
                 }
@@ -832,7 +883,7 @@
                             while (newValue < MinValue)
                             {
                                 var diff = Math.Abs(newValue - MinValue) - 1;
-                                newValue = (uint) (MaxValue - diff);
+                                newValue = (uint)(MaxValue - diff);
                             }
                         }
                     }
@@ -906,18 +957,18 @@
                     {
                         checked
                         {
-                            newValue = (ushort) (_currentValue + Step);
+                            newValue = (ushort)(_currentValue + Step);
                             while (newValue > MaxValue)
                             {
                                 var diff = newValue - MaxValue - 1;
-                                newValue = (ushort) (MinValue + diff);
+                                newValue = (ushort)(MinValue + diff);
                             }
                         }
                     }
                     catch
                     {
                         var rangeBetweenCyclic = MaxValue - _currentValue + 1;
-                        newValue = (ushort) (MinValue + Step - rangeBetweenCyclic);
+                        newValue = (ushort)(MinValue + Step - rangeBetweenCyclic);
                     }
                 }
                 else if (Step < 0)
@@ -926,18 +977,18 @@
                     {
                         checked
                         {
-                            newValue = (ushort) (_currentValue + Step);
+                            newValue = (ushort)(_currentValue + Step);
                             while (newValue < MinValue)
                             {
                                 var diff = Math.Abs(newValue - MinValue) - 1;
-                                newValue = (ushort) (MaxValue - diff);
+                                newValue = (ushort)(MaxValue - diff);
                             }
                         }
                     }
                     catch
                     {
                         var rangeBetweenCyclic = MinValue - _currentValue + 1;
-                        newValue = (ushort) (MaxValue + Step + rangeBetweenCyclic);
+                        newValue = (ushort)(MaxValue + Step + rangeBetweenCyclic);
                     }
                 }
                 _currentValue = newValue;
@@ -1027,7 +1078,7 @@
                             while (newValue < MinValue)
                             {
                                 var diff = Math.Abs((decimal)(newValue - MinValue)) - 1;
-                                newValue = MaxValue - (ulong) diff;
+                                newValue = MaxValue - (ulong)diff;
                             }
                         }
                     }
@@ -1099,18 +1150,18 @@
                     {
                         checked
                         {
-                            newValue = (sbyte) (_currentValue + Step);
+                            newValue = (sbyte)(_currentValue + Step);
                             while (newValue > MaxValue)
                             {
                                 var diff = newValue - MaxValue - 1;
-                                newValue = (sbyte) (MinValue + diff);
+                                newValue = (sbyte)(MinValue + diff);
                             }
                         }
                     }
                     catch
                     {
                         var rangeBetweenCyclic = MaxValue - _currentValue + 1;
-                        newValue = (sbyte) (MinValue + Step - rangeBetweenCyclic);
+                        newValue = (sbyte)(MinValue + Step - rangeBetweenCyclic);
                     }
                 }
                 else if (Step < 0)
@@ -1119,18 +1170,18 @@
                     {
                         checked
                         {
-                            newValue = (sbyte) (_currentValue + Step);
+                            newValue = (sbyte)(_currentValue + Step);
                             while (newValue < MinValue)
                             {
                                 var diff = Math.Abs(newValue - MinValue) - 1;
-                                newValue = (sbyte) (MaxValue - diff);
+                                newValue = (sbyte)(MaxValue - diff);
                             }
                         }
                     }
                     catch
                     {
                         var rangeBetweenCyclic = MinValue - _currentValue + 1;
-                        newValue = (sbyte) (MaxValue + Step + rangeBetweenCyclic);
+                        newValue = (sbyte)(MaxValue + Step + rangeBetweenCyclic);
                     }
                 }
                 _currentValue = newValue;
@@ -1304,11 +1355,11 @@
                 if (_currentValue != CurrentValue)
                     _currentValue = CurrentValue;
                 bool newValue = false;
-                if (Step ==true)
+                if (Step == true)
                 {
-                   newValue= !_currentValue;
+                    newValue = !_currentValue;
                 }
-                
+
                 _currentValue = newValue;
                 CurrentValue = _currentValue;
             }
@@ -1330,7 +1381,7 @@
             {
                 MaxValue = char.MaxValue,
                 MinValue = char.MinValue,
-                Step = (char) 1
+                Step = (char)1
             })
         {
 
@@ -1373,25 +1424,25 @@
 
                 if (_currentValue != CurrentValue)
                     _currentValue = CurrentValue;
-                char newValue ='0';
+                char newValue = '0';
                 if (Step > 0)
                 {
                     try
                     {
                         checked
                         {
-                            newValue = (char) (_currentValue + Step);
+                            newValue = (char)(_currentValue + Step);
                             while (newValue > MaxValue)
                             {
                                 var diff = newValue - MaxValue - 1;
-                                newValue = (char) (MinValue + diff);
+                                newValue = (char)(MinValue + diff);
                             }
                         }
                     }
                     catch
                     {
                         var rangeBetweenCyclic = MaxValue - _currentValue + 1;
-                        newValue = (char) (MinValue + Step - rangeBetweenCyclic);
+                        newValue = (char)(MinValue + Step - rangeBetweenCyclic);
                     }
                 }
                 else if (Step < 0)
@@ -1400,18 +1451,18 @@
                     {
                         checked
                         {
-                            newValue = (char) (_currentValue + Step);
+                            newValue = (char)(_currentValue + Step);
                             while (newValue < MinValue)
                             {
                                 var diff = Math.Abs(newValue - MinValue) - 1;
-                                newValue = (char) (MaxValue - diff);
+                                newValue = (char)(MaxValue - diff);
                             }
                         }
                     }
                     catch
                     {
                         var rangeBetweenCyclic = MinValue - _currentValue + 1;
-                        newValue = (char) (MaxValue + Step + rangeBetweenCyclic);
+                        newValue = (char)(MaxValue + Step + rangeBetweenCyclic);
                     }
                 }
                 _currentValue = newValue;
