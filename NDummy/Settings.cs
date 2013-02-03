@@ -107,6 +107,12 @@
         /// Gets the collection generator.
         /// </summary>
         public ICollectionGenerator CollectionGenerator { get; private set; }
-     
+
+
+        /// <summary>
+        /// Gets or sets the default total items generated for collection based factory ex: ArrayFactory
+        /// </summary>
+        /// <value>The total collection items.</value>
+        public int TotalCollectionItems { get; set; }
     }
 }

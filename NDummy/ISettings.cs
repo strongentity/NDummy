@@ -60,6 +60,14 @@
         /// Gets the collection generator.
         /// </summary>
         ICollectionGenerator CollectionGenerator {get;}
+
+
+        /// <summary>
+        /// Gets or sets the default total items generated for collection based factory ex: ArrayFactory
+        /// </summary>
+        /// <value>The total collection items.</value>
+        int TotalCollectionItems { get; set; }
+
     }
 
     /// <summary>
