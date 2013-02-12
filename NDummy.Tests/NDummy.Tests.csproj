@@ -56,6 +56,7 @@
     <Compile Include="CustomTypes\CustomStruct.cs" />
     <Compile Include="CustomTypes\ICustomInterface.cs" />
     <Compile Include="Factories\BooleanFactoryTest.cs" />
+    <Compile Include="Factories\CollectionFactories\ArrayFactoryTest.cs" />
     <Compile Include="Factories\CollectionFactories\DictionaryFactoryTest.cs" />
     <Compile Include="Factories\CollectionFactories\ListFactoryTest.cs" />
     <Compile Include="Factories\GuidFactoryTest.cs" />
