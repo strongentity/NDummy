@@ -29,7 +29,7 @@
 
         public IDictionary<TKey, TValue> Generate()
         {
-            return this.Generate(1);
+            return this.Generate(Dummy.Settings.TotalCollectionItems);
         }
 
         public IDictionary<TKey, TValue> Generate(int numberOfItems)

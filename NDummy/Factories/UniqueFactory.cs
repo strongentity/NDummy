@@ -1,129 +1,87 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace NDummy.Factories
+﻿namespace NDummy.Factories
 {
-    public abstract class UniqueFactory<T> : IFactory<T> where T : struct, IComparable
-    {
+    using System;
+    using System.Collections.Generic;
 
-        protected HashSet<T> Hash=new HashSet<T>();
-        private readonly IFactory<T> factory;
+    /// <summary>
+    /// Represents methods for generating unique T values
+    /// </summary>
+    /// <typeparam name="T">Type to be generated</typeparam>
+    public class UniqueFactory<T> : IFactory<T>
+    {
+        private ISet<T> set;
+        private IFactory<T> factory;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UniqueFactory{T}"/> class.
+        /// </summary>
+        public UniqueFactory()
+        {
+            this.factory = new ObjectGenerator<T>(new ObjectGeneratorParams
+            {
+                CurrentDepth = 1,
+                GeneralSettings = Dummy.Settings
+            });
+            this.set = new HashSet<T>();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UniqueFactory{T}"/> class.
+        /// </summary>
+        /// <param name="factory">The factory.</param>
+        public UniqueFactory(IFactory<T> factory)
+        {
+            this.factory = factory;
+            this.set = new HashSet<T>();
+        }
+
+        /// <summary>
+        /// Gets or sets the max try before throwing NoUniqueValueException
+        /// </summary>
+        /// <value>The max try.</value>
         public int MaxTry { get; set; }
 
-        protected abstract IFactory<T> GetRandomFactory(RandomFactorySettings<T> settings);
-        protected abstract IFactory<T> GetSequenceFactory(SequenceFactorySettings<T> settings);
-
-
-        protected UniqueFactory(UniqueFactorySettings<T> settings)
-        {
-            if(settings!=null)
-            {
-                MaxTry = settings.MaxTry;
-                    if(settings.IsRandom)
-                    {
-                        //create Random Factory
-                        RandomFactorySettings<T> randomSettings = new RandomFactorySettings<T>
-                                                                      {
-                                                                          MaxValue = settings.MaxValue,
-                                                                          MinValue = settings.MinValue
-                                                                      };
-                        factory = GetRandomFactory(randomSettings);
-                    }
-                    else
-                    {
-                        //create Sequnece Factory
-                        SequenceFactorySettings<T> sequenceSettings = new SequenceFactorySettings<T>
-                                                                          {
-                                                                              MaxValue = settings.MaxValue,
-                                                                              MinValue =settings.MinValue,
-                                                                              Step = settings.Step
-                                                                          };
-                      
-                       
-                        factory = GetSequenceFactory(sequenceSettings);
-                    }
-            }
-        }
-
- 
-
+        /// <summary>
+        /// Generates unique T instance.
+        /// </summary>
+        /// <returns>T value</returns>
+        /// <exception cref="NDummy.Factories.NoUniqueValueException">Unable to generate unique value</exception>
         public T Generate()
         {
-           //  UniqueFactory<T> factory = new UniqueFactory<T>
-           // ((IFactory)factory).Generate();
-           // var value = factory.Generate();
-            int cek = 0;
             T value;
+            bool generated = false;
+            int counter = 1;
             do
             {
-             value = factory.Generate();
-             Hash.Add(value);
-             if (Hash.Contains(value) == true)
-             {
-                 cek++;
-             }
-               
+                value = factory.Generate();
+                if (set.Add(value))
+                {
+                    generated = true;
+                    break;
+                }
+                counter++;
+            } while (counter <= MaxTry);
 
-            } 
-            while (cek<MaxTry);
-            {
-            return (T) value;    
-            }
+            if(! generated)
+                throw new NoUniqueValueException();
 
-
-            throw new Exception("The input cannot generate unique value");
+            return value;
         }
-
 
         object IFactory.Generate()
         {
-            return this.Generate();
+            return Generate();
         }
     }
 
-    public class UniqueFactorySettings<T>
+    public class NoUniqueValueException : Exception
     {
-        public bool IsRandom { get;  set; }
-        public int MaxTry { get;  set; }
-        public T Step { get;  set; }
-        public T MinValue { get;  set; }
-        public T MaxValue { get;  set; }
+        public NoUniqueValueException()
+            : base("Unable to generate unique value")
+        {
+            
+        }
     }
-
-    public class Int32UniqueFactory : UniqueFactory<int>
-    {
-        protected override IFactory<int> GetRandomFactory(RandomFactorySettings<int> settings)
-        {
-            return settings != null ? new RandomInt32Factory(settings) : new RandomInt32Factory();
-        }
-
-        protected override IFactory<int> GetSequenceFactory(SequenceFactorySettings<int> settings)
-        {
-            return settings != null ? new Int32SequenceFactory(settings) : new Int32SequenceFactory();
-        }
-
-        public Int32UniqueFactory() : base( new UniqueFactorySettings<int>()
-            {
-                IsRandom = true,
-                MaxValue = Int32.MaxValue,
-                MinValue = 1,
-                Step = 1,
-                MaxTry = 5
-            })
-         {
-
-         }
-         public Int32UniqueFactory(UniqueFactorySettings<int> settings)
-            : base(settings)
-        {
-
-        }
-
-    }
-
-    
 
 }
 

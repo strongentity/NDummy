@@ -59,7 +59,11 @@
     <Compile Include="Factories\CollectionFactories\ArrayFactoryTest.cs" />
     <Compile Include="Factories\CollectionFactories\DictionaryFactoryTest.cs" />
     <Compile Include="Factories\CollectionFactories\ListFactoryTest.cs" />
+<<<<<<< HEAD
     <Compile Include="Factories\EnumFactoryTest.cs" />
+=======
+    <Compile Include="Factories\CollectionFactories\SetFactoryTest.cs" />
+>>>>>>> remotes/origin/feature_uniquefactory
     <Compile Include="Factories\GuidFactoryTest.cs" />
     <Compile Include="Factories\RandomFactories\RandomBooleanFactoryTest.cs" />
     <Compile Include="Factories\RandomFactories\RandomByteFactoryTest.cs" />
@@ -85,9 +89,8 @@
     <Compile Include="Factories\SequenceFactories\Int64SequenceFactoryTest.cs" />
     <Compile Include="Factories\SequenceFactories\SequenceFactoryTestBase.cs" />
     <Compile Include="Factories\SequenceFactories\UInt32SequenceFactoryTest.cs" />
-    <Compile Include="Factories\UniqueFactories\Int32UniqueFactoryTest.cs" />
-    <Compile Include="Factories\UniqueFactories\UniqueFactoryTestBase.cs" />
     <Compile Include="Factories\StringFactoryTest.cs" />
+    <Compile Include="Factories\UniqueFactoryTest.cs" />
     <Compile Include="Generators\CustomAbstractClassGeneratorTest.cs" />
     <Compile Include="Generators\CustomAbstractClassImplGeneratorTest.cs" />
     <Compile Include="Generators\CustomClassGeneratorTest.cs" />

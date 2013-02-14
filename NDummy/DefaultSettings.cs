@@ -3,10 +3,6 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Linq;
-    using System.Text;
-
     using NDummy.Factories;
 
     public class DefaultSettings : Settings
@@ -50,6 +46,8 @@
             CollectionGenerator.Register(typeof(ICollection), this.GetListFactory);
             CollectionGenerator.Register(typeof(IEnumerable), this.GetListFactory);
             CollectionGenerator.Register(typeof(IDictionary), this.GetDictionaryFactory);
+
+            TotalCollectionItems = 1;
         }
 
         private IFactory GetListFactory(Type[] types, ISettings settings)

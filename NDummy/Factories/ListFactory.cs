@@ -24,7 +24,7 @@
 
         public IList<T> Generate()
         {
-            return this.Generate(1);
+            return this.Generate(Dummy.Settings.TotalCollectionItems);
         }
 
         public IList<T> Generate(int numberOfItems)
