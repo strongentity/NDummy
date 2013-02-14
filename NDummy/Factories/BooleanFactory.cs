@@ -1,10 +1,5 @@
 ﻿namespace NDummy.Factories
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     public class BooleanFactory : IFactory<bool>
     {
         public BooleanFactory():this(false)
