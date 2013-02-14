@@ -47,6 +47,7 @@
     <Compile Include="Factories\BooleanFactory.cs" />
     <Compile Include="Factories\CollectionGenerator.cs" />
     <Compile Include="Factories\DictionaryFactory.cs" />
+    <Compile Include="Factories\EnumFactory.cs" />
     <Compile Include="Factories\FuncAdapter.cs" />
     <Compile Include="Factories\GuidFactory.cs" />
     <Compile Include="Factories\ListFactory.cs" />
