@@ -59,11 +59,8 @@
     <Compile Include="Factories\CollectionFactories\ArrayFactoryTest.cs" />
     <Compile Include="Factories\CollectionFactories\DictionaryFactoryTest.cs" />
     <Compile Include="Factories\CollectionFactories\ListFactoryTest.cs" />
-<<<<<<< HEAD
     <Compile Include="Factories\EnumFactoryTest.cs" />
-=======
     <Compile Include="Factories\CollectionFactories\SetFactoryTest.cs" />
->>>>>>> remotes/origin/feature_uniquefactory
     <Compile Include="Factories\GuidFactoryTest.cs" />
     <Compile Include="Factories\RandomFactories\RandomBooleanFactoryTest.cs" />
     <Compile Include="Factories\RandomFactories\RandomByteFactoryTest.cs" />

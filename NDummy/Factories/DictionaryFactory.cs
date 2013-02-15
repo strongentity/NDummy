@@ -5,6 +5,11 @@
     using System.Linq;
     using System.Text;
 
+    /// <summary>
+    ///Provides method for generating dictionary of 
+    /// </summary>
+    /// <typeparam name="TKey">The type of the T key.</typeparam>
+    /// <typeparam name="TValue">The type of the T value.</typeparam>
     public class DictionaryFactory<TKey, TValue> : IDictionaryFactory<TKey, TValue>
     {
         private IDictionary<TKey, TValue> collection;

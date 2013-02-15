@@ -5,16 +5,7 @@
     using System.Linq;
     using System.Text;
 
-<<<<<<< HEAD
-
-    /// <summary>
-    /// Provides methods for generating array of T 
-    /// </summary>
-    /// <typeparam name="T">Type to be generated</typeparam>
-    public interface IArrayFactory<T> : IFactory
-=======
-    public interface IArrayFactory<T>
->>>>>>> remotes/origin/feature_uniquefactory
+    public interface IArrayFactory<T>:IFactory
     {
         /// <summary>
         /// Generates array of T
