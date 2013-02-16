@@ -44,8 +44,21 @@
             currentDepth = param.CurrentDepth;
             isBaseType = type.IsBaseType();
    
-            if(isBaseType)
-                baseFactory = generatorSettings.Factories[type] as IFactory<T>;
+            if (isBaseType)
+            {
+                IFactory factory = null;
+
+                if (generalSettings.Factories.TryGetValue(type, out factory))
+                {
+                    baseFactory = factory as IFactory<T>;
+                }
+                else if (Dummy.Settings.Factories.TryGetValue(type, out factory))
+                {
+                    baseFactory = factory as IFactory<T>;
+                }
+                else
+                    throw new Exception("Can\'t find generator for specific type");
+            }
         } 
 
         public IGenerator<T> ConstructWith(Func<ConstructorArguments, T> func)

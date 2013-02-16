@@ -13,6 +13,21 @@
         private readonly IFactory<T> factory;
         private readonly int[] length;
 
+        public ArrayFactory(IFactory<T> factory)
+        {
+            this.factory = factory;
+            Type type = typeof (T);
+
+            int rank = type.GetArrayRank();
+            var lengths = new List<int>();
+
+            for(int i=0; i< rank; i++)
+                lengths.Add(Dummy.Settings.TotalCollectionItems);
+
+            length = lengths.ToArray();
+        }
+
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ArrayFactory{T}"/> class.
         /// </summary>

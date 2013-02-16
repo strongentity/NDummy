@@ -49,7 +49,7 @@
         {
             if(collectionType.IsArray)
             {
-                return creators[typeof(Array)].Invoke(genericArgs, settings);
+                return creators[typeof(Array)].Invoke(new Type[]{collectionType}, settings);
             }
             if(collectionType.IsGenericType)
             {
